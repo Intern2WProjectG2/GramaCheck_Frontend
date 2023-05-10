@@ -18,7 +18,7 @@ const PORT_IN_USE_PROMPT = `${ chalk.blue("Be sure to update the following confi
 
 module.exports = {
     devServer: {
-        contentBase: path.resolve(__dirname, "dist"),
+        contentBase: path.resolve(__dirname, "public/dist"),
         historyApiFallback: true,
         https: true,
         host: HOST,
@@ -69,7 +69,7 @@ module.exports = {
         fs: "empty"
     },
     output: {
-        path: path.resolve(__dirname, "dist"),
+        path: path.resolve(__dirname, "public/dist"),
         filename: "[name].js"
     },
     plugins: [
