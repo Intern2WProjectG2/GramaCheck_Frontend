@@ -16,7 +16,12 @@ COPY . .
 # Build the application
 RUN npm run build
 
-USER 10015
+# Create a new user with UID 10014
+RUN addgroup -g 10014 choreo && \
+    adduser  --disabled-password  --no-create-home --uid 10014 --ingroup choreo choreouser
+# Set a non-root user
+USER 10014
+
 # Expose port 3000
 EXPOSE 3000
 
