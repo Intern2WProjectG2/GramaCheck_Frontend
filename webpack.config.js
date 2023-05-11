@@ -17,12 +17,40 @@ const PORT_IN_USE_PROMPT = `${ chalk.blue("Be sure to update the following confi
 `;
 
 module.exports = {
+    entry: "./src/App.jsx",
+    output: {
+        path: path.resolve(__dirname, "public/dist"),
+        filename: 'index_bundle.js',
+        publicPath: '/'
+    },
+    devtool: "source-map",
+    module: {
+        rules: [
+            {
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: 'babel-loader',
+                    }
+                ]
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader','css-loader']
+            },
+            {
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                use: ['url-loader'],
+            }
+        ]
+    },
     devServer: {
-        contentBase: path.resolve(__dirname, "public/dist"),
-        historyApiFallback: true,
-        https: true,
+        open: true,
         host: HOST,
-        inline: true,
+        historyApiFallback: true,
+        hot: true,
+        server: 'https',
         port: findPort(PORT, HOST, false, {
             extensions: {
                 BEFORE_getProcessTerminationMessage: () => {
@@ -31,53 +59,16 @@ module.exports = {
             }
         })
     },
-    devtool: "source-map",
-    entry: ["./src/App.jsx"],
-    module: {
-        rules: [
-            {
-                test: /\.(tsx|ts|js|jsx)$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: "babel-loader"
-                }
-            },
-            {
-                test: /\.css$/,
-                use: ["style-loader", "css-loader"]
-            },
-            {
-                test: /\.(png|jpg|cur|gif|eot|ttf|woff|woff2)$/,
-                use: ["url-loader"]
-            },
-            {
-                test: /\.html$/,
-                use: [
-                    {
-                        loader: "html-loader"
-                    }
-                ]
-            },
-            {
-                test: /\.js$/,
-                enforce: "pre",
-                use: ["source-map-loader"],
-            }
-        ]
-    },
-    node: {
-        fs: "empty"
-    },
-    output: {
-        path: path.resolve(__dirname, "public/dist"),
-        filename: "[name].js"
-    },
     plugins: [
         new HtmlWebpackPlugin({
-            template: "./src/index.html"
+            template: "public/index.html"
         })
     ],
     resolve: {
         extensions: [".tsx", ".ts", ".js", ".json"]
     }
 };
+
+/**
+ * Webpack configuration file 
+*/
