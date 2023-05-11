@@ -15,6 +15,6 @@ RUN npm run start
 # ENV GROUP_NGINX=10015
 
 # COPY --from=builder /app/public/ /usr/share/nginx/html/
-# USER 10015
-# EXPOSE 8080
+USER 10015
+EXPOSE 8080
 # CMD ["nginx", "-g", "daemon off;"]
