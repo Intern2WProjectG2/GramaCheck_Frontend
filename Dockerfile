@@ -16,6 +16,7 @@ COPY . .
 # Build the application
 RUN npm run build
 
+USER 10015
 # Expose port 3000
 EXPOSE 3000
 
