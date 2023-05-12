@@ -199,3 +199,101 @@ code {
     box-shadow: 0 0 0 1px #e0b4b4 inset, 0 0 0 0 transparent;
     padding: 1em 1.5em;
 }
+
+.LandingBtn{
+    width:250px;
+    border-radius:10px;
+    height:50px;
+    font-size:15px;
+    background-color: #002244;
+    color: #fff;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    margin-bottom: 40px;
+}
+
+.LandDiv{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ApplyFormDiv{
+    border: 2px solid #002244;
+    width:350px;
+    height:500px;
+    justify-content:center;
+    display:flex;
+    padding:10px;
+    border-radius:5px;
+    /*background-color: white;*/
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center
+}
+
+.lbl{
+    display: flex;
+    flex-direction: column;
+    text-align: left
+}
+
+.spanTxt{
+    margin-bottom: 0.5rem;
+    font-weight:bold;
+    font-size:20px;
+    color:#002244;
+}
+
+.inputTxt1{
+    width: 250px;
+    height: 35px
+    /*margin: 5px 0;*/
+    /*border-left: 0;*/
+    /*border-right: 0;*/
+    /*border-top: 0;*/
+    /*border-bottom: 1.5px solid gray;*/
+    /*outline: none;*/
+    /*background: transparent;*/
+    /*transition: border-color 0.2s ease-in-out;*/
+}
+
+.inputTxt2{
+    width: 250px;
+    height: 35px;
+    margin-bottom:5px;
+    /*width: 100%;*/
+    /*padding: 10px 0;*/
+    /*margin: 5px 0;*/
+    /*border-left: 0;*/
+    /*border-right: 0;*/
+    /*border-top: 0;*/
+    /*border-bottom: 1.5px solid gray;*/
+    /*outline: none;*/
+    /*background: transparent;*/
+    /*transition: border-color 0.2s ease-in-out;*/
+
+
+}
+/*.inputTxt1:hover,*/
+/*.inputTxt1:focus,*/
+/*.inputTxt2:hover,*/
+/*.inputTxt2:focus {*/
+/*    border-bottom-color: #002244; !* change the border color on hover/focus *!*/
+/*    outline: none; !* remove the default focus outline *!*/
+/*}*/
+
+.submitBtn{
+    padding: 0.75rem 1rem;
+    background-color:#0c255b;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 250px;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}

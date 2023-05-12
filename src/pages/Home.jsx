@@ -7,6 +7,7 @@ import { AuthenticationResponse } from "../components";
 import { useLocation } from "react-router-dom";
 import { LogoutRequestDenied } from "../components/LogoutRequestDenied.jsx";
 import { USER_DENIED_LOGOUT } from "../constants/errors";
+import { LandingPage } from "./LandingPage.jsx";
 
 /**
  * Decoded ID Token Response component Prop types interface.
@@ -131,22 +132,7 @@ export const HomePage = (HomePagePropsInterface) => {
             {
                 state.isAuthenticated
                     ? (
-                        <div className="content">
-{/*                             <AuthenticationResponse
-                                derivedResponse={ derivedAuthenticationState }
-                            /> */}
-                            <h2 className={ "spa-app-description" }>
-                                Welcome to Grama Check !&nbsp;
-                            </h2>
-                            <button
-                                className="btn primary mt-4"
-                                onClick={ () => {
-                                    handleLogout();
-                                } }
-                            >
-                                Logout
-                            </button>
-                        </div>
+                        <LandingPage/>
                     )
                     : (
                         <div className="content">
