@@ -6,6 +6,7 @@ import "./App.css";
 import { default as authConfig } from "./config";
 import { ErrorBoundary } from "./ErrorBoundary.jsx";
 import { HomePage, NotFoundPage } from "./pages";
+import { ApplyForm } from "./pages/ApplyForm.jsx";
 
 const AppContent = () => {
     const { error } = useAuthContext();
@@ -15,7 +16,9 @@ const AppContent = () => {
             <Router>
             <Switch>
                 <Route exact path="/" component={HomePage} />
+                <Route exact path="/apply-form" component={ApplyForm} />
                 <Route component={NotFoundPage} />
+                
             </Switch>
         </Router>
         </ErrorBoundary>
