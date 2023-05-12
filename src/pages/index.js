@@ -1,2 +1,2 @@
 export * from "./NotFoundPage.jsx";
-export * from "./Home.jsx"
+export * from "./LandingPage.jsx"
