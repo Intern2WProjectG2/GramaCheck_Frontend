@@ -35,10 +35,12 @@
     "dependencies": {
         "@asgardeo/auth-react": "^1.1.13",
         "@babel/runtime-corejs3": "^7.11.2",
+        "formik": "^2.2.9",
         "react": "^16.14.0",
         "react-dom": "16.14.0",
         "react-json-view": "^1.21.1",
-        "react-router-dom": "5.2.0"
+        "react-router-dom": "5.2.0",
+        "yup": "^1.1.1"
     },
     "devDependencies": {
         "@babel/cli": "^7.12.1",
