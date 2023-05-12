@@ -1,6 +1,6 @@
 import { Hooks, useAuthContext } from "@asgardeo/auth-react";
 import React, { FunctionComponent, ReactElement, useEffect, useState } from "react";
-import { default as authConfig } from "../config.json";
+import { default as authConfig } from "../config";
 import REACT_LOGO from "../images/react-logo.png";
 import { DefaultLayout } from "../layouts/Default.jsx";
 import { AuthenticationResponse } from "../components";
@@ -51,7 +51,7 @@ export const HomePage = (HomePagePropsInterface) => {
             decodedIdTokenHeader: JSON.parse(atob(idToken.split(".")[0])),
             decodedIDTokenPayload: decodedIDToken
         };
-
+    
         setDerivedAuthenticationState(derivedState);
     }
 
@@ -71,22 +71,6 @@ export const HomePage = (HomePagePropsInterface) => {
             }
         }
     }, [stateParam, errorDescParam]);
-
-   /**
-     * handles the error occurs when the logout consent page is enabled
-     * and the user clicks 'NO' at the logout consent page
-     */
-    useEffect(() => {
-        on(Hooks.SignOut, () => {
-            setHasLogoutFailureError(false);
-        });
-
-        on(Hooks.SignOutFailed, () => {
-            if(!errorDescParam) {
-                handleLogin();
-            }
-        })
-    }, [ on ]);
 
     const handleLogin = () => {
         setHasLogoutFailureError(false);

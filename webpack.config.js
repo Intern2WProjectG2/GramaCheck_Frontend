@@ -1,6 +1,7 @@
 require("dotenv").config();
 const chalk = require("chalk");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const Dotenv = require('dotenv-webpack');
 const path = require("path");
 const { findPort } = require("dev-server-ports");
 
@@ -62,7 +63,8 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: "public/index.html"
-        })
+        }),
+        new Dotenv()
     ],
     resolve: {
         extensions: [".tsx", ".ts", ".js", ".json"]

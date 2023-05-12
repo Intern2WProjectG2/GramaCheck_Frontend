@@ -3,7 +3,7 @@ import React, { FunctionComponent, ReactElement } from "react";
 import { render } from "react-dom";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
-import { default as authConfig } from "./config.json";
+import { default as authConfig } from "./config";
 import { ErrorBoundary } from "./ErrorBoundary.jsx";
 import { HomePage, NotFoundPage } from "./pages";
 
