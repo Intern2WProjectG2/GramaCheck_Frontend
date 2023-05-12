@@ -1,11 +1,11 @@
 import { AsgardeoAuthException } from "@asgardeo/auth-react";
-import React, { FunctionComponent, ReactElement } from "react";
+import React from "react";
 import { AuthenticationFailure } from "./pages/AuthenticationFailure.jsx";
 import { InvalidSystemTimePage } from "./pages/InvalidSystemTime.jsx";
 
 const ErrorBoundaryProps = {
   error: AsgardeoAuthException,
-  children: ReactElement
+  children: null
 }
 
 export const ErrorBoundary = (props) => {

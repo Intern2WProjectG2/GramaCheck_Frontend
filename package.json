@@ -29,8 +29,8 @@
     "license": "Apache-2.0",
     "private": false,
     "scripts": {
-        "start": "webpack-dev-server --mode development --inline --hot --open",
-        "build": "webpack -p"
+        "start": "webpack serve --compress --https --port 3000 --mode development",
+        "build": "webpack --mode production"
     },
     "dependencies": {
         "@asgardeo/auth-react": "^1.1.13",
@@ -63,8 +63,8 @@
         "style-loader": "^1.2.1",
         "typescript": "^3.9.7",
         "url-loader": "^4.1.0",
-        "webpack": "^4.43.0",
-        "webpack-cli": "^3.3.12",
-        "webpack-dev-server": "^3.11.0"
+        "webpack": "^5.75.0",
+        "webpack-cli": "^5.0.1",
+        "webpack-dev-server": "^4.11.0"
     }
 }
