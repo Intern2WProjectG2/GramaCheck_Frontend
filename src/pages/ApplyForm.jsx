@@ -57,7 +57,7 @@ export const ApplyForm = () => {
 
     return (
         <div className="content" style={{display: "flex",justifyContent: "center",  /*background: 'linear-gradient(45deg, rgba(12,37,91,1) 12%, rgba(13,198,203,1) 36%, rgba(255,255,255,1) 59%)' */    }}>
-            <div className="ApplyFormDiv">
+            <div className="applyFormDiv">
                 <form onSubmit={handleSubmit} className="form">
                     <label className="lbl">
                         <span className="spanTxt">ID</span>

@@ -1,27 +1,14 @@
 import { Hooks, useAuthContext } from "@asgardeo/auth-react";
-import React, { FunctionComponent, ReactElement, useEffect, useState } from "react";
-import { default as authConfig } from "../config";
-import REACT_LOGO from "../images/react-logo.png";
+import React, { useState, useEffect } from "react";
 import { DefaultLayout } from "../layouts/Default.jsx";
-import { AuthenticationResponse } from "../components";
 import { useLocation } from "react-router-dom";
 import { LogoutRequestDenied } from "../components/LogoutRequestDenied.jsx";
-import { USER_DENIED_LOGOUT } from "../constants/errors";
 import { LandingPage } from "./LandingPage.jsx";
 
 /**
- * Decoded ID Token Response component Prop types interface.
+ * Home page
  */
-//type HomePagePropsInterface = {};
-
-/**
- * Home page for the Sample.
- *
- * @param {HomePagePropsInterface} props - Props injected to the component.
- *
- * @return {React.ReactElement}
- */
-export const HomePage = (HomePagePropsInterface) => {
+export const HomePage = () => {
 
     const {
         state,
@@ -30,7 +17,6 @@ export const HomePage = (HomePagePropsInterface) => {
         getBasicUserInfo,
         getIDToken,
         getDecodedIDToken,
-        on
     } = useAuthContext();
 
     const [ derivedAuthenticationState, setDerivedAuthenticationState ] = useState();
@@ -83,25 +69,10 @@ export const HomePage = (HomePagePropsInterface) => {
         signOut();
     };
 
-    // If `clientID` is not defined in `config.json`, show a UI warning. 
-    if (!authConfig?.clientID) {
-
-        return (
-            <div className="content">
-                <h2>You need to update the Client ID to proceed.</h2>
-                <p>Please open "src/config.json" file using an editor, and update
-                    the <code>clientID</code> value with the registered application's client ID.</p>
-                <p>Visit repo <a
-                    href="https://github.com/asgardeo/asgardeo-auth-react-sdk/tree/master/samples/asgardeo-react-app">README</a> for
-                    more details.</p>
-            </div>
-        );
-    }
-
     if (hasLogoutFailureError) {
         return (
             <LogoutRequestDenied
-                errorMessage={USER_DENIED_LOGOUT}
+                errorMessage="End User denied the logout request"
                 handleLogin={handleLogin}
                 handleLogout={handleLogout}
             />
@@ -116,13 +87,20 @@ export const HomePage = (HomePagePropsInterface) => {
             {
                 state.isAuthenticated
                     ? (
-                        <LandingPage/>
+                        <>
+                            <LandingPage/>
+                            <button
+                                className="btn primary mt-4"
+                                onClick={ () => {
+                                    handleLogout();
+                                } }
+                            >
+                                Logout
+                            </button>
+                        </>
                     )
                     : (
                         <div className="content">
-                            <div className="home-image">
-                                <img src={ REACT_LOGO } className="react-logo-image logo"/>
-                            </div>
                             <h4 className={ "spa-app-description" }>
                                 An automated system to obtain your Grama Certificates&nbsp;
                             </h4>
@@ -132,7 +110,7 @@ export const HomePage = (HomePagePropsInterface) => {
                                     handleLogin();
                                 } }
                             >
-                                Login
+                                Continue
                             </button>
                         </div>
                     )

@@ -1,13 +1,6 @@
-import React, { FunctionComponent, ReactElement } from "react";
+import React from "react";
 import { DefaultLayout } from "../layouts/Default.jsx";
 
-/**
- * Page to display for Invalid System Time Page.
- *
- * @param {InvalidSystemTimePagePropsInterface} props - Props injected to the component.
- *
- * @return {React.ReactElement}
- */
 export const InvalidSystemTimePage = () => {
 
   return (

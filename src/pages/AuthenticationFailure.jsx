@@ -1,14 +1,7 @@
-import React, { FunctionComponent, ReactElement, useState } from "react";
+import React, { useState } from "react";
 import { useAuthContext } from "@asgardeo/auth-react";
 import { DefaultLayout } from "../layouts/Default.jsx";
 
-/**
- * Page to display Authentication Failure Page.
- *
- * @param {AuthenticationFailureInterface} props - Props injected to the component.
- *
- * @return {React.ReactElement}
- */
 export const AuthenticationFailure = () => {
 
   const { signIn } = useAuthContext();

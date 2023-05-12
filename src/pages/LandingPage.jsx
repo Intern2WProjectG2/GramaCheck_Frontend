@@ -6,9 +6,9 @@ export const LandingPage = () => {
     const history = useHistory();
     return (
         <div className="content" >
-            <div className="LandDiv">
+            <div className="landDiv">
                   <button
-                className="LandingBtn"
+                className="landingBtn"
                 onClick={() => {
                     history.push("/apply-form");
                 }}
@@ -26,7 +26,7 @@ export const LandingPage = () => {
                 Apply For Grama Cert
             </button>
             <button
-                className="LandingBtn"
+                className="landingBtn"
                 onClick={() => {
 
                 }}
@@ -43,7 +43,7 @@ export const LandingPage = () => {
                 Check Status
             </button>
             <button
-                className="LandingBtn"
+                className="landingBtn"
                 onClick={() => {
                    
                 }}
@@ -62,6 +62,5 @@ export const LandingPage = () => {
             </div>
           
         </div>
-
     );
 }

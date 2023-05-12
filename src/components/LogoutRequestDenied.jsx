@@ -1,30 +1,7 @@
-import React, { FunctionComponent, ReactElement } from "react";
+import React from "react";
 import { DefaultLayout } from "../layouts/Default.jsx";
 
-const LogoutRequestDeniedInterface = {
-  /**
-   * Error message to show in the title
-   */
-  errorMessage: null,
-  /**
-   * Handles Login process
-   */
-  handleLogin: ()=>{},
-  /**
-   * Handles Logout process
-   */
-  handleLogout: () => {}
-}
-
-/**
- * Page to display for Invalid System Time Page.
- *
- * @param {LogoutRequestDeniedInterface} props - Props injected to the component.
- *
- * @return {React.ReactElement}
- */
 export const LogoutRequestDenied = (props) => {
-  
   const {
     errorMessage,
     handleLogin,
