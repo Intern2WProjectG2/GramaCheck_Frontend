@@ -221,12 +221,11 @@ code {
 .ApplyFormDiv{
     border: 2px solid #002244;
     width:350px;
-    height:500px;
+    height:600px;
     justify-content:center;
     display:flex;
     padding:10px;
     border-radius:5px;
-    /*background-color: white;*/
 }
 
 .form{
@@ -252,40 +251,13 @@ code {
 .inputTxt1{
     width: 250px;
     height: 35px
-    /*margin: 5px 0;*/
-    /*border-left: 0;*/
-    /*border-right: 0;*/
-    /*border-top: 0;*/
-    /*border-bottom: 1.5px solid gray;*/
-    /*outline: none;*/
-    /*background: transparent;*/
-    /*transition: border-color 0.2s ease-in-out;*/
 }
 
 .inputTxt2{
     width: 250px;
     height: 35px;
     margin-bottom:5px;
-    /*width: 100%;*/
-    /*padding: 10px 0;*/
-    /*margin: 5px 0;*/
-    /*border-left: 0;*/
-    /*border-right: 0;*/
-    /*border-top: 0;*/
-    /*border-bottom: 1.5px solid gray;*/
-    /*outline: none;*/
-    /*background: transparent;*/
-    /*transition: border-color 0.2s ease-in-out;*/
-
-
 }
-/*.inputTxt1:hover,*/
-/*.inputTxt1:focus,*/
-/*.inputTxt2:hover,*/
-/*.inputTxt2:focus {*/
-/*    border-bottom-color: #002244; !* change the border color on hover/focus *!*/
-/*    outline: none; !* remove the default focus outline *!*/
-/*}*/
 
 .submitBtn{
     padding: 0.75rem 1rem;
@@ -293,7 +265,14 @@ code {
     color: #fff;
     border-radius: 10px;
     cursor: pointer;
-    width: 250px;
+    width: 200px;
     transition: background-color 0.3s ease;
     margin-top: 10px;
+}
+
+.errorMsg{
+    color: red;
+    font-size: 11px;
+    font-weight: bold;
+    margin-bottom: 2px;
 }
