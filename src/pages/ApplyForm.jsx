@@ -8,6 +8,7 @@ import { nicValidator, numberValidator, cityValidator, districtValidator, provin
 import { Header } from "../components/Header.jsx"
 import { addApp } from "../services/apiClient";
 import { useAuthContext } from "@asgardeo/auth-react";
+import { checkPolicies } from "../services/policies";
 export const ApplyForm = () => {
   const [nic, setNic] = useState({ value: '', error: '' });
   const [number, setNumber] = useState({ value: '', error: '' });
@@ -56,7 +57,7 @@ export const ApplyForm = () => {
     try {
       // TODO: change later. This is for testing the API integration
       const result = await addApp({
-        "appId": "1242",
+        "appId": "1243",
         "userId": "f47a",
         "issueDate": "2023-05-15",
         "status": "approved",
@@ -66,7 +67,18 @@ export const ApplyForm = () => {
       }, await getAccessToken()
       );
       console.log(result);
-    } catch (e) { } ''
+
+      try {
+        // Do the policies check.
+        const policyOutput = await checkPolicies();
+        console.log(policyOutput);
+      } catch (e) {
+        console.log(e);
+      }
+
+    } catch (e) {
+      console.log(e);
+    }
 
   }
   return (
