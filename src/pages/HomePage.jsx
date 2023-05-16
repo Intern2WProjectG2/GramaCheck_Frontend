@@ -20,11 +20,11 @@ export const HomePage = () => {
               }}
               onMouseEnter={(e) => {
                 e.target.style.backgroundColor = "white";
-                e.target.style.color = "#002244";
-                e.target.style.border = "1px solid #002244";
+                e.target.style.color = "#0c255b";
+                e.target.style.border = "1px solid #0c255b";
               }}
               onMouseLeave={(e) => {
-                e.target.style.backgroundColor = "#002244";
+                e.target.style.backgroundColor = "#0c255b";
                 e.target.style.color = "white";
               }}
             >

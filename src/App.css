@@ -219,7 +219,7 @@ code {
     border-radius: 10px;
     height: 45px;
     font-size: 15px;
-    background-color: #002244;
+    background-color: #0c255b;
     color: #fff;
     transition: background-color 0.3s ease;
     cursor: pointer;
@@ -233,7 +233,7 @@ code {
 }
 
 .applyFormDiv {
-    border: 2px solid #002244;
+    border: 2px solid #0c255b;
     width: 350px;
     height: 600px;
     justify-content: center;
