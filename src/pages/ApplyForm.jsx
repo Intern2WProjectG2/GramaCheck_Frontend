@@ -3,8 +3,9 @@ import "./ApplyForm.css";
 import {Formik, Field,Form,ErrorMessage} from "formik";
 import * as Yup from "yup";
 import formpic from '../images/formpic.png';
+import GramaCert from "../images/gramaCerts.jpg";
 import { nicValidator, numberValidator, cityValidator, districtValidator, provinceValidator, postalCodeValidator, gramasewaDivValidator } from './inputValidator.js'
-
+import {Header} from "./Header.jsx"
 
 export const ApplyForm = () => {
     const [nic, setNic] = useState({ value: '', error: '' });
@@ -41,8 +42,10 @@ export const ApplyForm = () => {
       }
     }
     return (
-        <div class="container" id="applyFormContainer">
-          
+      
+      <div className="container-fuild   ">
+          <Header />
+        <div class="container-fuild" id="applyFormContainer">
         <div class="row">
             <div class="col-md-7">
             <form id="stripe-login" onSubmit={registerHandler}>
@@ -119,7 +122,7 @@ export const ApplyForm = () => {
                   </form>
             </div>
             <div class="col-md-5 ">
-            <h1 style={{textAlign:"center" , fontWeight:"bold"}}><span>Get Your</span> <br/>Gramasewa Certificate<br/>Now</h1><hr/>
+            <h1  id="colapplyform" style={{textAlign:"center" , fontWeight:"bold"}}><span>Get Your</span> <br/>Gramasewa Certificate<br/>Now</h1><hr/>
               <div class="mt-4">
                   <div class="d-flex"> 
                   <div class="col-md-24 p-1 ">
@@ -134,5 +137,6 @@ export const ApplyForm = () => {
         </div>
      
     </div>
+   </div>
      );
 };
