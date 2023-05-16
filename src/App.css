@@ -328,6 +328,15 @@ code {
     padding: 15px 0;
 }
 
+.border-curve {
+    border-radius: 20px;
+    border:1px solid #0c255b;
+  }
+ 
+  .tbody{
+    vertical-align: middle;
+  }
+  
 @media screen and (max-width: 800px) {
     .landing {
         flex-direction: column;

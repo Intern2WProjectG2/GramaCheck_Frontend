@@ -37,6 +37,7 @@ export const Header = ({ setHasLogoutFailureError, hasLogoutFailureError }) => {
         );
     }
 
+    
     return (
 
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
