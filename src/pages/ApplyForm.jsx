@@ -3,7 +3,7 @@ import "./ApplyForm.css";
 import {Formik, Field,Form,ErrorMessage} from "formik";
 import * as Yup from "yup";
 import formpic from '../images/formpic.png';
-import GramaCert from "../images/gramaCerts.jpg";
+
 import { nicValidator, numberValidator, cityValidator, districtValidator, provinceValidator, postalCodeValidator, gramasewaDivValidator } from './inputValidator.js'
 import {Header} from "../components/Header.jsx"
 

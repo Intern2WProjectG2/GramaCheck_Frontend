@@ -35,8 +35,11 @@
     "dependencies": {
         "@asgardeo/auth-react": "^1.1.13",
         "@babel/runtime-corejs3": "^7.11.2",
+        "@fortawesome/free-solid-svg-icons": "^6.4.0",
+        "@fortawesome/react-fontawesome": "^0.2.0",
         "bootstrap": "5.0",
         "dotenv-webpack": "^8.0.1",
+        "font-awesome": "^4.7.0",
         "formik": "^2.2.9",
         "react": "^16.14.0",
         "react-dom": "16.14.0",
