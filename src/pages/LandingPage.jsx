@@ -92,14 +92,14 @@ export const LandingPage = () => {
                         >
                             <>
                                 <HomePage />
-                                <button
+                                {/* <button
                                     className="btn primary mt-4"
                                     onClick={() => {
                                         handleLogout();
                                     }}
                                 >
                                     Logout
-                                </button>
+                                </button> */}
                             </>
                         </DefaultLayout>
                     )

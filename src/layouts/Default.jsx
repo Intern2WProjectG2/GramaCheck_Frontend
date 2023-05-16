@@ -1,4 +1,6 @@
 import React from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Header } from "../pages/Header.jsx";
 
 export const DefaultLayout = (props) => {
     const {
@@ -9,12 +11,8 @@ export const DefaultLayout = (props) => {
 
     return (
         <>
-            <div className="container">
-                <div className="header-title">
-                    <h1>
-                        Grama Check
-                    </h1>
-                </div>
+            <div /*className="container"*/>
+                <Header />
                 {
                     isLoading
                         ? <div className="content">Loading ...</div>
