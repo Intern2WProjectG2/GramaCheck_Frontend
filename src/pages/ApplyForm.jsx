@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import formpic from '../images/formpic.png';
 
 import { nicValidator, numberValidator, cityValidator, districtValidator, provinceValidator, postalCodeValidator, gramasewaDivValidator } from './inputValidator.js'
-import {Header} from "./Header.jsx"
+import {Header} from "../components/Header.jsx"
 
 export const ApplyForm = () => {
     const [nic, setNic] = useState({ value: '', error: '' });

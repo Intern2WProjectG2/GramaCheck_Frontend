@@ -33,7 +33,6 @@ a {
 
 a:hover {
     text-decoration: none;
-    ;
 }
 
 .mb-0 {
@@ -169,15 +168,20 @@ code {
     border: none;
     color: #ffffff;
     display: inline-block;
-    font-size: 1.14285714rem;
+    font-size: 18px;
     text-align: center;
     text-decoration: none;
     width: 150px;
     cursor: pointer;
     -webkit-text-size-adjust: none;
-    padding: .78571429em 1.5em .78571429em;
+    padding: 15px 15px;
     margin-top: 30px;
     outline: none;
+}
+
+.btn.primary:hover {
+    color: #ffffff;
+    background-color: #3e4451;
 }
 
 .sub-title {
@@ -306,16 +310,22 @@ code {
 
 .continue {
     justify-content: center;
+    background-color: #F0F8FF;
 }
 
 .logo {
     width: 250px;
-    height: 250px;
+    height: 200px;
 }
 
 .picture{
-    width: 60%;
-    height: 60%;
+    width: 100%;
+    height: 50%;
+}
+
+.footer {
+    background-color: #F0F8FF;
+    padding: 15px 0;
 }
 
 .border-curve {
@@ -330,7 +340,7 @@ code {
 
     .section {
         width: 100%;
-        height: 50vh;
+        height: 50%;
     }
 
     .picture{
