@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { Header } from "./Header.jsx";
+import {Header} from "../components/Header.jsx";
 import PROFILE from "../images/profile.jpg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
