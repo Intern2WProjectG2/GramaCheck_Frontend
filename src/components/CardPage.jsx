@@ -10,7 +10,7 @@ export const CardPage = () => {
             <div className="container-fuild d-flex justify-content-center">
                 <div className="row justify-content-center">
                     <div className="col-lg-3 col-md-5 col-sm-12">
-                        <div className="card text-center border-primary">
+                        <div className="card text-center border-light">
                             <div className="overflow">
                                 <img src={GramaCert} alt=""  className="card-img-top"  height="250px" />
                             </div>
@@ -23,11 +23,11 @@ export const CardPage = () => {
                                     }}
                                     onMouseEnter={(e) => {
                                         e.target.style.backgroundColor = "white";
-                                        e.target.style.color = "#002244";
-                                        e.target.style.border = "1px solid #002244";
+                                        e.target.style.color = "#0c255b";
+                                        e.target.style.border = "1px solid #0c255b";
                                     }}
                                     onMouseLeave={(e) => {
-                                        e.target.style.backgroundColor = "#002244";
+                                        e.target.style.backgroundColor = "#0c255b";
                                         e.target.style.color = "white";
                                     }}
 
@@ -38,7 +38,7 @@ export const CardPage = () => {
                         </div>
                     </div>
                     <div className="col-lg-3 col-md-5 col-sm-12">
-                        <div className="card text-center border-primary">
+                        <div className="card text-center border-light">
                             <div className="overflow">
                                 <img src={CheckStatus} alt="" className="card-img-top"  height="250px"/>
                             </div>
@@ -51,11 +51,11 @@ export const CardPage = () => {
                                     }}
                                     onMouseEnter={(e) => {
                                         e.target.style.backgroundColor = "white";
-                                        e.target.style.color = "#002244";
-                                        e.target.style.border = "1px solid #002244";
+                                        e.target.style.color = "#0c255b";
+                                        e.target.style.border = "1px solid #0c255b";
                                     }}
                                     onMouseLeave={(e) => {
-                                        e.target.style.backgroundColor = "#002244";
+                                        e.target.style.backgroundColor = "#0c255b";
                                         e.target.style.color = "white";
                                     }}
                                 >
