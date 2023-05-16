@@ -1,86 +1,138 @@
-import React, { useState } from "react";
-import "../App.css";
+import React, { useState, useEffect } from "react";
+import "./ApplyForm.css";
 import {Formik, Field,Form,ErrorMessage} from "formik";
 import * as Yup from "yup";
+import formpic from '../images/formpic.png';
+import { nicValidator, numberValidator, cityValidator, districtValidator, provinceValidator, postalCodeValidator, gramasewaDivValidator } from './inputValidator.js'
+
 
 export const ApplyForm = () => {
+    const [nic, setNic] = useState({ value: '', error: '' });
+    const [number, setNumber] = useState({ value: '', error: '' });
+    const [city, setCity] = useState({ value: '', error: '' });
+    const [district, setDistrict] = useState({ value: '', error: '' });
+    const [province, setProvince] = useState({ value: '', error: '' });
+    const [postalcode, setPostalCode] = useState({ value: '', error: '' });
+    const [gramasewaDiv, setGramasewaDiv] = useState({ value: '', error: '' });
 
-    // const handleSubmit = (event) => {
-    //     event.preventDefault();
-    //     const data = new FormData(event.target);
-    //     console.log(Object.fromEntries(data.entries()));
-    // };
-
+    const registerHandler = async (e) => {
+        e.preventDefault();
+    
+       
+        const nicError = nicValidator(nic.value)
+        const cityError = cityValidator(city.value)
+        const numberError = numberValidator(number.value)
+        const districtError = districtValidator(district.value)
+        const provinceError = provinceValidator(province.value)
+        const postalcodeError = postalCodeValidator(postalcode.value)
+        const gramasewaDivError = gramasewaDivValidator(gramasewaDiv.value)
+      
+      
+    
+        if (nicError || numberError || cityError || districtError || provinceError|| postalcodeError || gramasewaDivError) {
+         setNic({ ...nic, error: nicError })
+          setNumber({ ...number, error: numberError })
+          setCity({ ...city, error: cityError })
+          setDistrict({ ...district, error: districtError })
+          setProvince({ ...province, error: provinceError })
+          setPostalCode({ ...postalcode, error: postalcodeError })
+          setGramasewaDiv({ ...gramasewaDiv, error: gramasewaDivError })
+         return
+      }
+    }
     return (
+        <div class="container" id="applyFormContainer">
+          
+        <div class="row">
+            <div class="col-md-7">
+            <form id="stripe-login" onSubmit={registerHandler}>
+                <div class="mb-3">
+                <label style={{fontWeight:"bold"}}for="exampleInputEmail1" class="form-label">ID</label>
+                <input type="text" placeholder="NIC" class="form-control" id="nic"
+                defaultValue={nic.value}
+                                onChange={(e) => {
+                                  setNic({value:e.target.value, error: '' });
+                                }} />
+                  {nic.error && <p className="errorValidation"> {nic.error} </p>}
+                  </div>
 
-        <div className="content" style={{display: "flex",justifyContent: "center",  /*background: 'linear-gradient(45deg, rgba(12,37,91,1) 12%, rgba(13,198,203,1) 36%, rgba(255,255,255,1) 59%)' */    }}>
-            <div className="applyFormDiv">
-                <Formik
-                initialValues={{
-                    id: "",
-                    number: "",
-                    city: "",
-                    district: "",
-                    province: "",
-                    postalCode: "",
-                    gramaDiv: "",
-                }}
-                validationSchema={Yup.object({
-                    id: Yup.string()
-                        .required("* NIC is required")
-                        .matches(/^[12][09][0-9]{10}$|^[3-9][0-9]{8}[vV]$/, "Invalid NIC number"),
-                    number: Yup.string().required("* House or Building Number is required"),
-                    city: Yup.string().required("* City or Town is required").matches(/^[a-zA-Z ]*$/, 'City or Town should not contain numbers'),
-                    district: Yup.string().required("* District is required").matches(/^[a-zA-Z ]*$/, 'District should not contain numbers'),
-                    province: Yup.string().required("* Province is required").matches(/^[a-zA-Z ]*$/, 'Province should not contain numbers'),
-                    postalCode: Yup.string().required("* Postal Code is required"),
-                    gramaDiv: Yup.string().required("* Dramasewa Division Number is required"),
-                })}
-                onSubmit={(values, { setSubmitting }) => {
-                    console.log(values);
-                    setSubmitting(false);
-                }}
-                >
-                    <Form /*onSubmit={handleSubmit}*/ className="form">
-                        <label className="lbl">
-                            <span className="spanTxt">ID</span>
-                            <Field type="text" name="id" className="inputTxt1" placeholder="NIC" /*onChange={event => setId(event.target.value)}*/ required />
-                            <ErrorMessage component="label" className="errorMsg" name="id" />
-                        </label>
-                        <label className="lbl">
-                            <span className="spanTxt" style={{marginTop:"20px"}}>Address</span>
-                            <Field type="text" name="number" className="inputTxt2" placeholder="Number" /*value={number} onChange={handleNumberChange}*/ required />
-                            <ErrorMessage component="label" className="errorMsg" name="number" />
-                            <Field type="text" name="city" className="inputTxt2" placeholder="City" /*value={city} onChange={handleCityChange}*/ required />
-                            <ErrorMessage component="label" className="errorMsg" name="city" />
-                            <Field type="text" name="district" className="inputTxt2" placeholder="District" /*value={district} onChange={handleDistrictChange}*/ required />
-                            <ErrorMessage component="label" className="errorMsg" name="district" />
-                            <Field type="text" name="province" className="inputTxt2" placeholder="Province" /*value={province} onChange={handleProvinceChange}*/ required />
-                            <ErrorMessage component="label" className="errorMsg" name="province" />
-                            <Field type="text" name="postalCode" className="inputTxt2" placeholder="Postal Code" /*value={postalCode} onChange={handlePostalCodeChange}*/ required />
-                            <ErrorMessage component="label" className="errorMsg" name="postalCode" />
-                            <Field type="text" name="gramaDiv" className="inputTxt2" placeholder="Gramasewa Division Number" /*value={gramaDiv} onChange={handleGramaDivChange}*/ required />
-                            <ErrorMessage component="label" className="errorMsg" name="gramaDiv" />
-                        </label>
-                        <button
-                            type="submit"
-                            className="submitBtn"
-                            onMouseEnter={(e) => {
-                                e.target.style.backgroundColor = "white";
-                                e.target.style.color = "#0c255b";
-                                e.target.style.border = "1px solid #0c255b";
-                            }}
-                            onMouseLeave={(e) => {
-                                e.target.style.backgroundColor = "#0c255b";
-                                e.target.style.color = "white";
-                            }}
-                        >
-                            Submit
-                        </button>
+                  <div class="mb-3">
+                  <label style={{fontWeight:"bold"}} for="exampleInputEmail1" class="form-label">Address</label>
+                <input type="text" placeholder="Number" class="form-control" id="number"
+                  defaultValue={number.value}
+                  onChange={(e) => {
+                    setNumber({value:e.target.value, error: '' });
+                  }} />
+                    {number.error && <p className="errorValidation"> {number.error} </p>}
+                   </div>
 
-                    </Form>
-                </Formik>
+
+                  <div class="mb-3">
+                  <input type="text" placeholder="City" class="form-control" id="city"   
+                 defaultValue={city.value}
+                                onChange={(e) => {
+                                  setCity({value:e.target.value, error: '' });
+                                }} /> 
+                                  {city.error && <p className="errorValidation"> {city.error} </p>}
+                                </div>
+
+                  <div class="mb-3">
+                  <input type="text" placeholder="District" class="form-control" id="district"  
+                  defaultValue={district.value}
+                                onChange={(e) => {
+                                  setDistrict({value:e.target.value, error: '' });
+                                }} />
+                                  {district.error && <p className="errorValidation"> {district.error} </p>}
+                  </div>
+
+
+                  <div class="mb-3">
+                            <input type="text" placeholder="Province" class="form-control" id="province"  
+                            defaultValue={province.value}
+                                onChange={(e) => {
+                                  setProvince({value:e.target.value, error: '' });
+                                }} />
+                                  {province.error && <p className="errorValidation"> {province.error} </p>}
+                            </div>
+
+                            <div class="mb-3">
+                            <input type="text" placeholder="Postal Code" class="form-control" id="postalcode" 
+                             defaultValue={postalcode.value}
+                                onChange={(e) => {
+                                  setPostalCode({value:e.target.value, error: '' });
+                                }} />
+                                  {postalcode.error && <p className="errorValidation"> {postalcode.error} </p>}
+                            </div>
+
+                            <div class="mb-3">
+                            <input type="text" placeholder="Gramasewa Division Number" class="form-control" id="gramasewaDiv"   
+                            defaultValue={gramasewaDiv.value}
+                                onChange={(e) => {
+                                  setGramasewaDiv({value:e.target.value, error: '' });
+                                }}/>
+                                {gramasewaDiv.error && <p className="errorValidation"> {gramasewaDiv.error} </p>} 
+                            </div>
+
+                            <div class="mb-3">
+                  <button class="btn btn-primary" style={{backgroundColor:"#0c255b"}}>Submit</button>
+                  </div>
+                  </form>
             </div>
+            <div class="col-md-5 ">
+            <h1 style={{textAlign:"center" , fontWeight:"bold"}}><span>Get Your</span> <br/>Gramasewa Certificate<br/>Now</h1><hr/>
+              <div class="mt-4">
+                  <div class="d-flex"> 
+                  <div class="col-md-24 p-1 ">
+                     <img src={formpic} class="img-fluid"alt="Responsive image" id="imageform"/>
+                     </div>
+               
+                    </div>
+              </div>
+               
+            </div>
+       
         </div>
-    );
+     
+    </div>
+     );
 };
