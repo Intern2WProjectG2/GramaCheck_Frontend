@@ -1,33 +1,41 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { Header } from "./Header.jsx";
 
 export const StatusList = () => {
     const history = useHistory();
 
     const data = [
-        { name: "A list item", status: "Pending" },
-        { name: "A second list item", status: "Completed" },
-        { name: "A third list item", status: "In Progress" },
+        { date: "2023 May 04", nic: "923467889v", address: "No 123, Galle Road, Colombo 03" },
+        { date: "2023 April 09", nic: "923467889v", address: "No 145, Galle Road, Colombo 03" },
+        { date: "2023 January 01", nic: "923467889v" , address: "No 13, Galle Road, Colombo 03"},
     ];
+
+    const handleCheckStatus = (item) => {
+        history.push(`/check-status?date=${encodeURIComponent(item.date)}&nic=${encodeURIComponent(item.nic)}&address=${encodeURIComponent(item.address)}`);
+    };
 
     return (
         <>
-            <h1>status list</h1>
-            <div style={{ margin: "10px" }}>
+        <Header />
+            <h1 style={{ fontSize:"40px", marginTop:"25px", color:"#282c34"}}>Applications</h1>
+            <div style={{ margin: "20px", marginTop:"40px" }}>
                 <ul class="list-group">
-                    {data.map((item,index) =>(
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                       {item.name}
-                        <button type="button" class="btn btn-primary btn-sm"
-                            onClick={() => {
-                                history.push("/check-status");
-                            }}
-                        >Check Status</button>
-                    </li>
+                    {data.map((item, index) => (
+                        <li href="#" class="list-group-item d-flex justify-content-between align-items-center">
+                            {item.date}
+                            <button
+                                type="button"
+                                className="btn btn-primary btn-sm"
+                                onClick={() => handleCheckStatus(item)}
+                            >
+                                Check Status
+                            </button>
+                        </li>
 
                     ))}
-                    
-                    
+
+
                 </ul>
             </div>
         </>
