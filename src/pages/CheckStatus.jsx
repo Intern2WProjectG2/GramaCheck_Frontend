@@ -1,7 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import {Header} from "../components/Header.jsx";
-import PROFILE from "../images/profile.jpg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
 
@@ -40,7 +39,6 @@ export const CheckStatus = () => {
     <Header />
       <h1 style={{ fontSize:"40px", marginTop:"25px", color:"#282c34"}}>Status</h1>
       <div style={{marginLeft:"50px"}}>        
-      <img src={PROFILE} class="rounded float-start" style={{width:"150px", height:"150px"}} alt="..."/>
       </div>
       <p>Provided NIC: {nic}</p>
       <p>Provided Address: {address}</p>
