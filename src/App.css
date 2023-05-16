@@ -318,6 +318,11 @@ code {
     height: 60%;
 }
 
+.border-curve {
+    border-radius: 20px;
+    border:1px solid #0c255b;
+  }
+
 @media screen and (max-width: 800px) {
     .landing {
         flex-direction: column;

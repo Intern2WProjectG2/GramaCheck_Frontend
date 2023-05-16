@@ -9,6 +9,7 @@ import { LandingPage, NotFoundPage } from "./pages";
 import { ApplyForm } from "./pages/ApplyForm.jsx";
 import { StatusList } from "./pages/StatusList.jsx";
 import { CheckStatus } from "./pages/CheckStatus.jsx";
+import { Profile } from "./components/Profile.jsx";
 
 const AppContent = () => {
     const { error } = useAuthContext();
@@ -21,6 +22,7 @@ const AppContent = () => {
                     <Route exact path="/apply-form" component={ApplyForm} />
                     <Route exact path="/status-list" component={StatusList} />
                     <Route exact path="/check-status" component={CheckStatus} />
+                    <Route exact path="/profile" component={Profile} />
                     <Route component={NotFoundPage} />
 
                 </Switch>
