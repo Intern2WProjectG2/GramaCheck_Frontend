@@ -1,10 +1,9 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import "../App.css"
-import { CardPage } from "./CardPage.jsx";
+import { CardPage } from "../components/CardPage.jsx";
 
 export const HomePage = () => {
-  const history = useHistory();
   return (
     <>
       <div style={{ marginTop: "50px", justifySelf: "center" }}>
@@ -12,7 +11,7 @@ export const HomePage = () => {
       </div>
       <div style={{ marginTop: "50px" }}>
         <nav aria-label="Page navigation example">
-          <ul class="pagination justify-content-end">
+          <ul className="pagination justify-content-end">
             <button
               className="homeBtn"
               style={{ borderRadius: "50%", width: "50px", height: "50px", marginRight: "10px", fontSize: "20px", fontWeight: "bold" }}
