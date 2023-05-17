@@ -59,3 +59,13 @@ export const getAllApps = (token) => {
         }
     });
 }
+
+export const updateApp = (appId, data, token) => {
+    console.log('updateApp', appId, data, token);
+    return axios.patch(`${process.env.API_BASE_URL}/updateApp/${appId}`, data, {
+        'headers': {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
+    });
+}
