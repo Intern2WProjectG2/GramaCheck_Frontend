@@ -4,6 +4,8 @@ import "../App.css"
 import { CardPage } from "../components/CardPage.jsx";
 
 export const HomePage = () => {
+  const history = useHistory();
+
   return (
     <>
       <div style={{ marginTop: "50px", justifySelf: "center" }}>
@@ -16,7 +18,7 @@ export const HomePage = () => {
               className="homeBtn"
               style={{ borderRadius: "50%", width: "50px", height: "50px", marginRight: "10px", fontSize: "20px", fontWeight: "bold" }}
               onClick={() => {
-
+                history.push(`/help`);
               }}
               onMouseEnter={(e) => {
                 e.target.style.backgroundColor = "white";
