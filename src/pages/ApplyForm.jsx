@@ -63,9 +63,9 @@ export const ApplyForm = () => {
           province: province.value,
           postalcode: postalcode.value,
           gramasewaDiv: gramasewaDiv.value
-        }, await getAccessToken() 
+        }, await getAccessToken()
       );
-      console.log(policyOutput);
+      console.log(`The policy output is: ${policyOutput}`);
     } catch (e) {
       console.log(e);
     }
