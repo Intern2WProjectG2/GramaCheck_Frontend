@@ -2,7 +2,7 @@ import React from "react";
 import profile from "../images/profile.png";
 import "../App.css";
 
-export const Profile = () => {
+export const Profile = ({inputNIC,inputAddress}) => {
  
   return (
     <div class="container justify-content-center"  style={{border:"#fff"}}>
@@ -23,12 +23,12 @@ export const Profile = () => {
         <tbody>
           <tr>
           <th scope="row">NIC</th>
-          <td>889756789V</td>
+          <td>{inputNIC}</td>
           </tr>
 
           <tr>
           <th scope="row">ADDRESS</th>
-          <td>67/9S, Nugegoda, Colombo, Western Province</td>
+          <td>{inputAddress}</td>
           </tr>
 
           <tr>
