@@ -50,3 +50,12 @@ export const policecheck = (data, token) => {
         }
     });
 }
+
+export const getAllApps = (token) => {
+    return axios.get(`${process.env.API_BASE_URL}/apps`, {
+        'headers': {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
+    });
+}
