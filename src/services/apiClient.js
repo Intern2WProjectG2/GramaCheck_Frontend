@@ -15,7 +15,6 @@ import { useAuthContext } from "@asgardeo/auth-react";
 //     return req;
 // });
 
-// Not used.
 export const addApp = (data, token) => {
     return axios.post(`${process.env.API_BASE_URL}/addApp`, data, {
         'headers': {
