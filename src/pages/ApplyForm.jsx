@@ -52,30 +52,20 @@ export const ApplyForm = () => {
       return
     }
 
-    // Send data to backend
-    console.log('Adding the application request.');
     try {
-      // TODO: change later. This is for testing the API integration
-      const result = await addApp({
-        "appId": "1243",
-        "userId": "f47a",
-        "issueDate": "2023-05-15",
-        "status": "approved",
-        "inputAddress": "WWW Street",
-        "inputNIC": "AB123456",
-        "certLink": "https://example.com/certificate"
-      }, await getAccessToken()
+      // Do the policies check.
+      const policyOutput = await checkPolicies(
+        {
+          nic: nic.value,
+          number: number.value,
+          city: city.value,
+          district: district.value,
+          province: province.value,
+          postalcode: postalcode.value,
+          gramasewaDiv: gramasewaDiv.value
+        }, await getAccessToken() 
       );
-      console.log(result);
-
-      try {
-        // Do the policies check.
-        const policyOutput = await checkPolicies();
-        console.log(policyOutput);
-      } catch (e) {
-        console.log(e);
-      }
-
+      console.log(policyOutput);
     } catch (e) {
       console.log(e);
     }
