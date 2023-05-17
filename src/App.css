@@ -352,3 +352,24 @@ code {
         height: 100%;
     }
 }
+
+
+/* .chat-bubble {
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  @media (max-width: 767px) {
+    .chat-bubble {
+      padding: 50px;
+    }
+  }
+  
+  @media (max-width: 575px) {
+    .chat-bubble {
+      padding: 10px;
+    }
+  }
+   */
