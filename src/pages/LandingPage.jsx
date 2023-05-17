@@ -29,8 +29,6 @@ export const LandingPage = () => {
         const idToken = await getIDToken();
         const decodedIDToken = await getDecodedIDToken();
 
-        console.log("basicUserInfo", basicUserInfo);
-
         const derivedState = {
             authenticateResponse: basicUserInfo,
             idToken: idToken.split("."),
