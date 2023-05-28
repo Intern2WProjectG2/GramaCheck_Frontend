@@ -21,7 +21,7 @@ export const StatusList = () => {
         { date: "2023 January 01", nic: "923467889v", address: "No 13, Galle Road, Colombo 03" },
     ];
 
-    const getUserApps = async () => {
+    const getApps = async () => {
         try {
             const userApps = await getUserApps(state.sub, await getAccessToken());
             setApps(userApps.data);
@@ -34,20 +34,16 @@ export const StatusList = () => {
         history.push(`/check-status?date=${encodeURIComponent(item.issueDate)}&nic=${encodeURIComponent(item.inputNIC)}&address=${encodeURIComponent(item.inputAddress)}`);
     };
 
-    /* useEffect(() => {
-        getUserApps();
-    }, []);
-
     useEffect(() => {
-        console.log(apps);
-    }, [apps]); */
+        getApps();
+    }, []);
 
     return (
         <DefaultLayout>
             <h1 style={{ fontSize: "40px", marginTop: "25px", color: "#282c34" }}>Applications</h1>
             {apps && <div style={{ margin: "20px", marginTop: "40px", flexGrow:"1" }}>
                 <ul className="list-group">
-                    {userApps.map((item, index) => (
+                    {apps.map((item, index) => (
                         <li href="#" key={index} className="list-group-item d-flex justify-content-between align-items-center">
                             {item.issueDate}
                             <button

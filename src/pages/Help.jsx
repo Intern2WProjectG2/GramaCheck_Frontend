@@ -7,10 +7,12 @@ import { sendSlackMessage } from '../services/utils.js';
 import { useAuthContext } from "@asgardeo/auth-react";
 import { DefaultLayout } from "../layouts/Default.jsx";
 import DialogBox from "../components/DialogBox.jsx";
+import Loading from "../components/Loading.jsx";
 
 export const Help = () => {
     const history = useHistory();
     const [open, setOpen] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const {
         getAccessToken
@@ -20,12 +22,14 @@ export const Help = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true);
         const formData = new FormData(formRef.current);
         const helpMessage = formData.get('help');
         // Perform further actions with the form data
 
         sendSlackMessage(helpMessage, await getAccessToken())
             .then(() => {
+                setIsLoading(false);
                 setOpen(true);
             });
     };
@@ -67,6 +71,10 @@ export const Help = () => {
                 setOpen={setOpen}
                 alert="Your message has been successfully sent to the slack channel. Please join the GramaCheck slack channel to get further support."
                 handleContinue={() => history.push('/')}
+            />}
+
+            {isLoading && <Loading
+                alert="Please wait. The message is being sent to the slack channel."
             />}
         </DefaultLayout>
     );
