@@ -1,6 +1,25 @@
-import { identitycheck, validateAddress, policecheck, addApp } from './apiClient';
+import { identitycheck, validateAddress, policecheck, addApp, updateApp } from './apiClient';
+import { v4 as uuidv4 } from 'uuid';
 
 export async function checkPolicies(data, token) {
+    const userId = JSON.parse(localStorage.getItem('authState')).decodedIDTokenPayload.sub;
+    const address = {
+        "addNum": data.number,
+        "city": data.city,
+        "district": data.district,
+        "province": data.province,
+        "postalCode": data.postalcode,
+        "gramaDivNum": data.gramasewaDiv,
+    }
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    const formattedDate = `${year}-${month}-${day}`;
+
+    // New Application Id
+    const appId = uuidv4();
+
     let policyResults = {
         "identity": false,
         "address": false,
@@ -10,12 +29,12 @@ export async function checkPolicies(data, token) {
     // Add application with input data to DB.
     try {
         const app = {
-            "appId": "1252",
-            "userId": "f47a",
-            "issueDate": "2023-05-15",
-            "status": "approved",
-            "inputAddress": "MYADDRESS",
-            "inputNIC": "AB123456",
+            "appId": appId,
+            "userId": userId,
+            "issueDate": formattedDate,
+            "status": "pending",
+            "inputAddress": `${data.number}, ${data.city}, ${data.district}, ${data.province}, ${data.postalcode}, ${data.gramasewaDiv}`,
+            "inputNIC": data.nic,
             "certLink": "https://example.com/certificate"
         };
         if ((await addApp(app, token)).status === 201) {
@@ -30,14 +49,6 @@ export async function checkPolicies(data, token) {
 
 
             // Check address
-            const address = {
-                "addNum": data.number,
-                "city": data.city,
-                "district": data.district,
-                "province": data.province,
-                "postalCode": data.postalcode,
-                "gramaDivNum": data.gramasewaDiv,
-            }
             try {
                 if ((await validateAddress(address, token)).data === true) {
                     policyResults['address'] = true;
@@ -48,9 +59,8 @@ export async function checkPolicies(data, token) {
 
 
             // Check police reports
-            const userId = "f47a";
             try {
-                if ((await policecheck(userId, token)).data === true) {
+                if ((await policecheck(data.nic, token)).data === true) {
                     policyResults['police'] = true;
                 }
             } catch (e) {
@@ -60,6 +70,18 @@ export async function checkPolicies(data, token) {
 
             // Generate report
             // TODO:
+            // TODO: Update database
+            // status = pending/approved/identityFailed/addressFailed/policeFailed/pending
+            try {
+                const result = await updateApp(appId, {
+                    "status": "approved"
+                }, token);
+                console.log(result);
+            } catch (e) {
+                console.log(e);
+            }
+
+            // TODO: Send SMS
         } else {
             throw new Error('Error adding application to DB');
         }

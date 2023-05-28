@@ -29,8 +29,6 @@ export const LandingPage = () => {
         const idToken = await getIDToken();
         const decodedIDToken = await getDecodedIDToken();
 
-        console.log("basicUserInfo", basicUserInfo);
-
         const derivedState = {
             authenticateResponse: basicUserInfo,
             idToken: idToken.split("."),
@@ -39,6 +37,9 @@ export const LandingPage = () => {
         };
 
         setDerivedAuthenticationState(derivedState);
+
+        // Set auth state to local storage
+        localStorage.setItem("authState", JSON.stringify(derivedState));
     }
 
     useEffect(() => {
@@ -67,7 +68,7 @@ export const LandingPage = () => {
                             hasLogoutFailureError={hasLogoutFailureError}
                             setHasLogoutFailureError={setHasLogoutFailureError}
                         >
-                            <HomePage/>
+                            <HomePage />
                         </DefaultLayout>
                     )
                     : (
@@ -90,7 +91,7 @@ export const LandingPage = () => {
                                 >
                                     Get Started
                                 </button>
-                                <p style={{position:"absolute", bottom:0}}>&copy; GramaInc {new Date().getFullYear()}</p>
+                                <p style={{ position: "absolute", bottom: 0 }}>&copy; GramaInc {new Date().getFullYear()}</p>
                             </div>
                         </div>
                     )
