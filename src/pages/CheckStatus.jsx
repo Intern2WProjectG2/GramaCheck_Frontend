@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
 import {Profile} from "../components/Profile.jsx";
 
+import { DefaultLayout } from "../layouts/Default.jsx";
+
 export const CheckStatus = () => {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
@@ -36,8 +38,7 @@ export const CheckStatus = () => {
   });
 
   return (
-    <>
-    <Header />
+    <DefaultLayout>
       <Profile inputNIC={inputNIC} inputAddress={inputAddress}/>
       <br />
       <br />
@@ -65,6 +66,6 @@ export const CheckStatus = () => {
       </tbody>
     </table>
     </div>
-    </>
+    </DefaultLayout>
   );
 };

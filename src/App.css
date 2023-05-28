@@ -1,6 +1,7 @@
 body {
     margin: 0;
     padding: 0;
+    height: 100%;
     text-align: center;
     color: #2A2A2A;
     background-color: #fff;
@@ -326,6 +327,7 @@ code {
 .footer {
     background-color: #F0F8FF;
     padding: 15px 0;
+    width: 100%;
 }
 
 .border-curve {

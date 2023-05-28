@@ -5,6 +5,7 @@ import { faMessage } from '@fortawesome/free-solid-svg-icons'
 import { sendSlackMessage } from '../services/utils.js';
 
 import { useAuthContext } from "@asgardeo/auth-react";
+import { DefaultLayout } from "../layouts/Default.jsx";
 
 export const Help = () => {
     const {
@@ -23,8 +24,7 @@ export const Help = () => {
         sendSlackMessage(helpMessage, await getAccessToken());
     };
     return (
-        <>
-            <Header />
+        <DefaultLayout>
             <div className="container" style={{ backgroundColor: " #f5f5f5", boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.2)", height: "500px" }}>
                 <div >
                     <h1 style={{ fontSize: "35px", marginTop: "20px", color: "#282c34", }}>
@@ -55,7 +55,6 @@ export const Help = () => {
                     >Send</button>
                 </form>
             </div>
-
-        </>
+        </DefaultLayout>
     );
 }
