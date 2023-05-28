@@ -69,3 +69,12 @@ export const updateApp = (appId, data, token) => {
         }
     });
 }
+
+export const getUserApps = (data, token) => {
+    return axios.get(`${process.env.API_BASE_URL}/userApps/${data}`, {
+        'headers': {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
+    });
+}

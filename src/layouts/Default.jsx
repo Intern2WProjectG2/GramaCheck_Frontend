@@ -13,20 +13,18 @@ export const DefaultLayout = (props) => {
     } = props;
 
     return (
-        <>
-            <div /*className="container"*/>
-                <Header 
-                    setHasLogoutFailureError={setHasLogoutFailureError}
-                    hasLogoutFailureError={hasLogoutFailureError}/>
-                {
-                    isLoading
-                        ? <div className="content">Loading ...</div>
-                        : hasErrors
-                            ? <div className="content">An error occured while authenticating ...</div>
-                            : children
-                }
-                <Footer />
-            </div>
-        </>
+        <div style={{display:"flex", flexDirection:"column", minHeight:"100vh"}}>
+            <Header
+                setHasLogoutFailureError={setHasLogoutFailureError}
+                hasLogoutFailureError={hasLogoutFailureError} />
+            {
+                isLoading
+                    ? <div className="content">Loading ...</div>
+                    : hasErrors
+                        ? <div className="content">An error occured while authenticating ...</div>
+                        : children
+            }
+            <Footer />
+        </div>
     );
 };
