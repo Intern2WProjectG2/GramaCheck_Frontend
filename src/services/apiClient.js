@@ -16,7 +16,8 @@ import { useAuthContext } from "@asgardeo/auth-react";
 // });
 
 export const addApp = (data, token) => {
-    return axios.post(`${process.env.API_BASE_URL}/addApp`, data, {
+    console.log(token);
+    return axios.post(`${process.env.API_BASE_URL}/addApplication`, data, {
         'headers': {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + token
