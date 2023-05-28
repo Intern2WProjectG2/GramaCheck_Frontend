@@ -1,13 +1,17 @@
-import React, { useRef } from "react";
-import { Header } from "../components/Header.jsx";
+import React, { useRef, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMessage } from '@fortawesome/free-solid-svg-icons'
 import { sendSlackMessage } from '../services/utils.js';
 
 import { useAuthContext } from "@asgardeo/auth-react";
 import { DefaultLayout } from "../layouts/Default.jsx";
+import DialogBox from "../components/DialogBox.jsx";
 
 export const Help = () => {
+    const history = useHistory();
+    const [open, setOpen] = useState(false);
+
     const {
         getAccessToken
     } = useAuthContext();
@@ -18,11 +22,14 @@ export const Help = () => {
         e.preventDefault();
         const formData = new FormData(formRef.current);
         const helpMessage = formData.get('help');
-        console.log(helpMessage);
         // Perform further actions with the form data
 
-        sendSlackMessage(helpMessage, await getAccessToken());
+        sendSlackMessage(helpMessage, await getAccessToken())
+            .then(() => {
+                setOpen(true);
+            });
     };
+
     return (
         <DefaultLayout>
             <div className="container" style={{ backgroundColor: " #f5f5f5", boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.2)", height: "500px" }}>
@@ -34,9 +41,9 @@ export const Help = () => {
                 </div>
 
                 <form style={{ margin: "90px", marginTop: "50PX" }} ref={formRef} onSubmit={handleSubmit}>
-                    <div class="mb-3">
-                        <div class="form-floating">
-                            <textarea name="help" class="form-control " placeholder="Hey! we're here to help!" id="floatingTextarea2" style={{ height: "200px", borderRadius: "10px", boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.2)" }}></textarea>
+                    <div className="mb-3">
+                        <div className="form-floating">
+                            <textarea name="help" className="form-control " placeholder="Hey! we're here to help!" id="floatingTextarea2" style={{ height: "200px", borderRadius: "10px", boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.2)" }}></textarea>
                             <label for="floatingTextarea2">Hey! we're here to help!</label>
                         </div>
                     </div>
@@ -55,6 +62,12 @@ export const Help = () => {
                     >Send</button>
                 </form>
             </div>
+
+            {open && <DialogBox
+                setOpen={setOpen}
+                alert="Your message has been successfully sent to the slack channel. Please join the GramaCheck slack channel to get further support."
+                handleContinue={() => history.push('/')}
+            />}
         </DefaultLayout>
     );
 }

@@ -21,14 +21,14 @@ export const StatusList = () => {
         { date: "2023 January 01", nic: "923467889v", address: "No 13, Galle Road, Colombo 03" },
     ];
 
-    /* const getUserApps = async () => {
+    const getUserApps = async () => {
         try {
             const userApps = await getUserApps(state.sub, await getAccessToken());
             setApps(userApps.data);
         } catch (error) {
             console.log(error);
         }
-    } */
+    }
 
     const handleCheckStatus = (item) => {
         history.push(`/check-status?date=${encodeURIComponent(item.issueDate)}&nic=${encodeURIComponent(item.inputNIC)}&address=${encodeURIComponent(item.inputAddress)}`);
@@ -36,11 +36,11 @@ export const StatusList = () => {
 
     /* useEffect(() => {
         getUserApps();
-    }, []); */
+    }, []);
 
     useEffect(() => {
         console.log(apps);
-    }, [apps]);
+    }, [apps]); */
 
     return (
         <DefaultLayout>
@@ -48,7 +48,7 @@ export const StatusList = () => {
             {apps && <div style={{ margin: "20px", marginTop: "40px", flexGrow:"1" }}>
                 <ul className="list-group">
                     {userApps.map((item, index) => (
-                        <li href="#" className="list-group-item d-flex justify-content-between align-items-center">
+                        <li href="#" key={index} className="list-group-item d-flex justify-content-between align-items-center">
                             {item.issueDate}
                             <button
                                 type="button"

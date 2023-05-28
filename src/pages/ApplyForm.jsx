@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import "./ApplyForm.css";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -7,13 +8,15 @@ import formpic from '../images/formpic.png';
 import { nicValidator, numberValidator, cityValidator, districtValidator, provinceValidator, postalCodeValidator, gramasewaDivValidator } from './inputValidator.js'
 import { Header } from "../components/Header.jsx"
 import Footer from "../components/Footer.jsx"
-import { addApp } from "../services/apiClient";
 import { useAuthContext } from "@asgardeo/auth-react";
 import { checkPolicies } from "../services/policies";
 import { DefaultLayout } from "../layouts/Default.jsx";
+import DialogBox from "../components/DialogBox.jsx";
 
 export const ApplyForm = () => {
-  const [monthDifference, setMonthDifference] = useState();
+  const history = useHistory();
+  const [open, setOpen] = useState(false);
+  const [alert, setAlert] = useState('');
 
   const [nic, setNic] = useState({ value: '', error: '' });
   const [number, setNumber] = useState({ value: '', error: '' });
@@ -79,124 +82,122 @@ export const ApplyForm = () => {
 
     const monthDifference = (currentYear - targetYear) * 12 + (currentMonth - targetMonth);
 
-    setMonthDifference(monthDifference);
+    if (monthDifference < 6) {
+      setOpen(true);
+      setAlert("You already have an approved application within the last 6 months. Press continue to check status.");
+    }
   }
 
   useEffect(() => {
     getMonthDifference();
   }, []);
 
-  if (monthDifference > 6) {
-    return (
-      <>
+  return (
+    <>
       <Header />
-        <div className="container-fuild">
-          <div className="container-fuild" id="applyFormContainer">
-            <div className="row">
-              <div className="col-md-7">
-                <form id="stripe-login" onSubmit={registerHandler}>
-                  <div className="mb-3">
-                    <label style={{ fontWeight: "bold" }} htmlFor="exampleInputEmail1" className="form-label">ID</label>
-                    <input type="text" placeholder="NIC" className="form-control" id="nic"
-                      defaultValue={nic.value}
-                      onChange={(e) => {
-                        setNic({ value: e.target.value, error: '' });
-                      }} />
-                    {nic.error && <p className="errorValidation"> {nic.error} </p>}
-                  </div>
-
-                  <div className="mb-3">
-                    <label style={{ fontWeight: "bold" }} htmlFor="exampleInputEmail1" className="form-label">Address</label>
-                    <input type="text" placeholder="Number" className="form-control" id="number"
-                      defaultValue={number.value}
-                      onChange={(e) => {
-                        setNumber({ value: e.target.value, error: '' });
-                      }} />
-                    {number.error && <p className="errorValidation"> {number.error} </p>}
-                  </div>
-
-
-                  <div className="mb-3">
-                    <input type="text" placeholder="City" className="form-control" id="city"
-                      defaultValue={city.value}
-                      onChange={(e) => {
-                        setCity({ value: e.target.value, error: '' });
-                      }} />
-                    {city.error && <p className="errorValidation"> {city.error} </p>}
-                  </div>
-
-                  <div className="mb-3">
-                    <input type="text" placeholder="District" className="form-control" id="district"
-                      defaultValue={district.value}
-                      onChange={(e) => {
-                        setDistrict({ value: e.target.value, error: '' });
-                      }} />
-                    {district.error && <p className="errorValidation"> {district.error} </p>}
-                  </div>
-
-
-                  <div className="mb-3">
-                    <input type="text" placeholder="Province" className="form-control" id="province"
-                      defaultValue={province.value}
-                      onChange={(e) => {
-                        setProvince({ value: e.target.value, error: '' });
-                      }} />
-                    {province.error && <p className="errorValidation"> {province.error} </p>}
-                  </div>
-
-                  <div className="mb-3">
-                    <input type="text" placeholder="Postal Code" className="form-control" id="postalcode"
-                      defaultValue={postalcode.value}
-                      onChange={(e) => {
-                        setPostalCode({ value: e.target.value, error: '' });
-                      }} />
-                    {postalcode.error && <p className="errorValidation"> {postalcode.error} </p>}
-                  </div>
-
-                  <div className="mb-3">
-                    <input type="text" placeholder="Gramasewa Division Number" className="form-control" id="gramasewaDiv"
-                      defaultValue={gramasewaDiv.value}
-                      onChange={(e) => {
-                        setGramasewaDiv({ value: e.target.value, error: '' });
-                      }} />
-                    {gramasewaDiv.error && <p className="errorValidation"> {gramasewaDiv.error} </p>}
-                  </div>
-
-                  <div className="mb-3">
-                    <button
-                      className="btn btn-primary"
-                      style={{ backgroundColor: "#0c255b" }}
-                    >Submit</button>
-                  </div>
-                </form>
-              </div>
-              <div className="col-md-5 ">
-                <h1 id="colapplyform" style={{ textAlign: "center", fontWeight: "bold" }}><span>Get Your</span> <br />Gramasewa Certificate<br />Now</h1><hr />
-                <div className="mt-4">
-                  <div className="d-flex">
-                    <div className="col-md-24 p-1 ">
-                      <img src={formpic} className="img-fluid" alt="Responsive image" id="imageform" />
-                    </div>
-
-                  </div>
+      <div className="container-fuild">
+        <div className="container-fuild" id="applyFormContainer">
+          <div className="row">
+            <div className="col-md-7">
+              <form id="stripe-login" onSubmit={registerHandler}>
+                <div className="mb-3">
+                  <label style={{ fontWeight: "bold" }} htmlFor="exampleInputEmail1" className="form-label">ID</label>
+                  <input type="text" placeholder="NIC" className="form-control" id="nic"
+                    defaultValue={nic.value}
+                    onChange={(e) => {
+                      setNic({ value: e.target.value, error: '' });
+                    }} />
+                  {nic.error && <p className="errorValidation"> {nic.error} </p>}
                 </div>
 
+                <div className="mb-3">
+                  <label style={{ fontWeight: "bold" }} htmlFor="exampleInputEmail1" className="form-label">Address</label>
+                  <input type="text" placeholder="Number" className="form-control" id="number"
+                    defaultValue={number.value}
+                    onChange={(e) => {
+                      setNumber({ value: e.target.value, error: '' });
+                    }} />
+                  {number.error && <p className="errorValidation"> {number.error} </p>}
+                </div>
+
+
+                <div className="mb-3">
+                  <input type="text" placeholder="City" className="form-control" id="city"
+                    defaultValue={city.value}
+                    onChange={(e) => {
+                      setCity({ value: e.target.value, error: '' });
+                    }} />
+                  {city.error && <p className="errorValidation"> {city.error} </p>}
+                </div>
+
+                <div className="mb-3">
+                  <input type="text" placeholder="District" className="form-control" id="district"
+                    defaultValue={district.value}
+                    onChange={(e) => {
+                      setDistrict({ value: e.target.value, error: '' });
+                    }} />
+                  {district.error && <p className="errorValidation"> {district.error} </p>}
+                </div>
+
+
+                <div className="mb-3">
+                  <input type="text" placeholder="Province" className="form-control" id="province"
+                    defaultValue={province.value}
+                    onChange={(e) => {
+                      setProvince({ value: e.target.value, error: '' });
+                    }} />
+                  {province.error && <p className="errorValidation"> {province.error} </p>}
+                </div>
+
+                <div className="mb-3">
+                  <input type="text" placeholder="Postal Code" className="form-control" id="postalcode"
+                    defaultValue={postalcode.value}
+                    onChange={(e) => {
+                      setPostalCode({ value: e.target.value, error: '' });
+                    }} />
+                  {postalcode.error && <p className="errorValidation"> {postalcode.error} </p>}
+                </div>
+
+                <div className="mb-3">
+                  <input type="text" placeholder="Gramasewa Division Number" className="form-control" id="gramasewaDiv"
+                    defaultValue={gramasewaDiv.value}
+                    onChange={(e) => {
+                      setGramasewaDiv({ value: e.target.value, error: '' });
+                    }} />
+                  {gramasewaDiv.error && <p className="errorValidation"> {gramasewaDiv.error} </p>}
+                </div>
+
+                <div className="mb-3">
+                  <button
+                    className="btn btn-primary"
+                    style={{ backgroundColor: "#0c255b" }}
+                  >Submit</button>
+                </div>
+              </form>
+            </div>
+            <div className="col-md-5 ">
+              <h1 id="colapplyform" style={{ textAlign: "center", fontWeight: "bold" }}><span>Get Your</span> <br />Gramasewa Certificate<br />Now</h1><hr />
+              <div className="mt-4">
+                <div className="d-flex">
+                  <div className="col-md-24 p-1 ">
+                    <img src={formpic} className="img-fluid" alt="Responsive image" id="imageform" />
+                  </div>
+
+                </div>
               </div>
 
             </div>
 
           </div>
-        </div>
-      </>
-    )
-  } else {
-    return (
-      <DefaultLayout>
-        <div style={{flexGrow:"1"}}>
-          <p>You have already applied for a Grama Certificate within 6 months</p>
 
         </div>
-      </DefaultLayout>
-    )
-  }
+      </div>
+
+      {open && <DialogBox
+        setOpen={setOpen}
+        alert={alert}
+        handleContinue={() => history.push('/status-list')}
+      />}
+    </>
+  )
 }
