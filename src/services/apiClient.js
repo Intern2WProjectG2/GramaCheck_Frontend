@@ -16,7 +16,6 @@ import { useAuthContext } from "@asgardeo/auth-react";
 // });
 
 export const addApp = (data, token) => {
-    console.log(token);
     return axios.post(`${process.env.API_BASE_URL}/addApplication`, data, {
         'headers': {
             'Content-Type': 'application/json',
@@ -62,7 +61,7 @@ export const getAllApps = (token) => {
 }
 
 export const updateApp = (appId, data, token) => {
-    console.log('updateApp', appId, data, token);
+    //console.log('updateApp', appId, data, token);
     return axios.patch(`${process.env.API_BASE_URL}/updateApp/${appId}`, data, {
         'headers': {
             'Content-Type': 'application/json',
@@ -72,6 +71,15 @@ export const updateApp = (appId, data, token) => {
 }
 
 export const getUserApps = (data, token) => {
+    return axios.get(`${process.env.API_BASE_URL}/userApps/${data}`, {
+        'headers': {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
+    });
+}
+
+export const getLastUserApp = (data, token) => {
     return axios.get(`${process.env.API_BASE_URL}/userApps/${data}`, {
         'headers': {
             'Content-Type': 'application/json',

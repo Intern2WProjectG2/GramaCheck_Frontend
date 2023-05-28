@@ -10,13 +10,15 @@ import { Header } from "../components/Header.jsx"
 import Footer from "../components/Footer.jsx"
 import { useAuthContext } from "@asgardeo/auth-react";
 import { checkPolicies } from "../services/policies";
+import { getLastUserApp } from "../services/apiClient";
 import { DefaultLayout } from "../layouts/Default.jsx";
 import DialogBox from "../components/DialogBox.jsx";
+import Loading from "../components/Loading.jsx";
 
 export const ApplyForm = () => {
   const history = useHistory();
   const [open, setOpen] = useState(false);
-  const [alert, setAlert] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const [nic, setNic] = useState({ value: '', error: '' });
   const [number, setNumber] = useState({ value: '', error: '' });
@@ -31,8 +33,18 @@ export const ApplyForm = () => {
     getAccessToken
   } = useAuthContext();
 
+  const getLastApp = async () => {
+    try {
+      const userApp = await getLastUserApp(state.sub, await getAccessToken());
+      console.log(userApp.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   const registerHandler = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     const nicError = nicValidator(nic.value)
     const cityError = cityValidator(city.value)
@@ -50,6 +62,7 @@ export const ApplyForm = () => {
       setProvince({ ...province, error: provinceError })
       setPostalCode({ ...postalcode, error: postalcodeError })
       setGramasewaDiv({ ...gramasewaDiv, error: gramasewaDivError })
+      setIsLoading(false);
       return
     }
 
@@ -64,13 +77,17 @@ export const ApplyForm = () => {
           province: province.value,
           postalcode: postalcode.value,
           gramasewaDiv: gramasewaDiv.value
-        }, await getAccessToken()
+        }, await getAccessToken(), setOpen, setIsLoading
       );
       console.log(`The policy output is: ${policyOutput}`);
     } catch (e) {
       console.log(e);
     }
   }
+
+  useEffect(() => {
+    getLastApp();
+  }, []);
 
   const getMonthDifference = () => {
     const currentDate = new Date();
@@ -195,8 +212,12 @@ export const ApplyForm = () => {
 
       {open && <DialogBox
         setOpen={setOpen}
-        alert={alert}
-        handleContinue={() => history.push('/status-list')}
+        alert="Your application has been sent."
+        handleContinue={() => history.push('/')}
+      />}
+
+      {isLoading && <Loading
+        alert="Please wait. The application is being processed."
       />}
     </>
   )

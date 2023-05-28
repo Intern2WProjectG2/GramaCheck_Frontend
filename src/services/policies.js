@@ -1,7 +1,7 @@
 import { identitycheck, validateAddress, policecheck, addApp, updateApp } from './apiClient';
 import { v4 as uuidv4 } from 'uuid';
 
-export async function checkPolicies(data, token) {
+export async function checkPolicies(data, token, setOpen, setIsLoading) {
     const userId = JSON.parse(localStorage.getItem('authState')).decodedIDTokenPayload.sub;
     const address = {
         "addNum": data.number,
@@ -16,7 +16,6 @@ export async function checkPolicies(data, token) {
     const month = String(today.getMonth() + 1).padStart(2, '0');
     const day = String(today.getDate()).padStart(2, '0');
     const formattedDate = `${year}-${month}-${day}`;
-    console.log(formattedDate);
 
     // New Application Id
     const appId = uuidv4();
@@ -39,6 +38,8 @@ export async function checkPolicies(data, token) {
             "certLink": "https://example.com/certificate"
         };
         if ((await addApp(app, token)).status === 201) {
+            setIsLoading(false);
+            setOpen(true);
             // Check identity
             try {
                 if ((await identitycheck(data.nic, token)).data === true) {
@@ -77,7 +78,7 @@ export async function checkPolicies(data, token) {
                 const result = await updateApp(appId, {
                     "status": "approved"
                 }, token);
-                console.log(result);
+                //console.log(result);
             } catch (e) {
                 console.log(e);
             }
