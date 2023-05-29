@@ -87,3 +87,12 @@ export const getLastUserApp = (data, token) => {
         }
     });
 }
+
+export const sendSMS = (token, userId,status) => {
+    return axios.post(`${process.env.API_BASE_URL}/sendSMS?userId=${userId}&status=${status}`, {
+        'headers': {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
+    });
+}
