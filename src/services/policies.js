@@ -80,7 +80,7 @@ export async function checkPolicies(data, token, setOpen, setIsLoading) {
                     "status": status,
                 }, token);
                 console.log(result);
-                sendSMS(token, userId, status)
+                const smsResult = await sendSMS(token, userId, status)
             } catch (e) {
                 console.log(e);
             }
