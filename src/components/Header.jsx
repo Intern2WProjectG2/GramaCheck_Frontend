@@ -11,8 +11,6 @@ export const Header = ({ setHasLogoutFailureError, hasLogoutFailureError }) => {
         signOut,
     } = useAuthContext();
 
-    console.log(state);
-
     const search = useLocation().search;
     const stateParam = new URLSearchParams(search).get('state');
     const errorDescParam = new URLSearchParams(search).get('error_description');
