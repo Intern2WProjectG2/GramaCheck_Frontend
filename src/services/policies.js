@@ -32,7 +32,7 @@ export async function checkPolicies(data, token, setOpen, setIsLoading) {
             "appId": appId,
             "userId": userId,
             "issueDate": formattedDate,
-            "status": "pending",
+            "status": "p",
             "inputAddress": `${data.number}, ${data.city}, ${data.district}, ${data.province}, ${data.postalcode}, ${data.gramasewaDiv}`,
             "inputNIC": data.nic,
             "certLink": "https://example.com/certificate"
