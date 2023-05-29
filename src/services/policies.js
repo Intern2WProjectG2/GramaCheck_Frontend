@@ -1,4 +1,4 @@
-import { identitycheck, validateAddress, policecheck, addApp, updateApp } from './apiClient';
+import { identitycheck, validateAddress, policecheck, addApp, updateApp, sendSMS } from './apiClient';
 import { v4 as uuidv4 } from 'uuid';
 
 export async function checkPolicies(data, token, setOpen, setIsLoading) {
@@ -32,7 +32,7 @@ export async function checkPolicies(data, token, setOpen, setIsLoading) {
             "appId": appId,
             "userId": userId,
             "issueDate": formattedDate,
-            "status": "pending",
+            "status": "p",
             "inputAddress": `${data.number}, ${data.city}, ${data.district}, ${data.province}, ${data.postalcode}, ${data.gramasewaDiv}`,
             "inputNIC": data.nic,
             "certLink": "https://example.com/certificate"
@@ -75,10 +75,13 @@ export async function checkPolicies(data, token, setOpen, setIsLoading) {
             // TODO: Update database
             // status = pending/approved/identityFailed/addressFailed/policeFailed/pending
             try {
+                const status = getApplicationStatus(policyResults);
                 const result = await updateApp(appId, {
-                    "status": "approved"
+                    "status": status,
                 }, token);
-                //console.log(result);
+                console.log(result);
+                console.log(token);
+                const smsResult = await sendSMS(token, userId, status)
             } catch (e) {
                 console.log(e);
             }
@@ -92,4 +95,18 @@ export async function checkPolicies(data, token, setOpen, setIsLoading) {
     }
 
     return policyResults.identity && policyResults.address && policyResults.police;
+}
+
+function getApplicationStatus(policyResults) {
+    if (policyResults.identity && policyResults.address && policyResults.police) {
+        return "a";
+    } else if (!policyResults.identity) {
+        return "iF";
+    } else if (!policyResults.address) {
+        return "aF";
+    } else if (!policyResults.police) {
+        return "pF";
+    } else {
+        return "p";
+    }
 }
