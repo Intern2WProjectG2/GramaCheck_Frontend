@@ -24,8 +24,11 @@ export const Help = () => {
         e.preventDefault();
         setIsLoading(true);
         const formData = new FormData(formRef.current);
-        const helpMessage = formData.get('help');
+        let helpMessage = formData.get('help');
         // Perform further actions with the form data
+        const authState = JSON.parse(localStorage.getItem('authState'));
+        const email = authState.decodedIDTokenPayload.email;
+        helpMessage += ` ----- User email: ${email}`;
 
         sendSlackMessage(helpMessage, await getAccessToken())
             .then(() => {
