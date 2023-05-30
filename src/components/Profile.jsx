@@ -5,20 +5,20 @@ import "../App.css";
 export const Profile = ({inputNIC,inputAddress}) => {
  
   return (
-    <div class="container justify-content-center"  style={{border:"#fff"}}>
-    <div class="row border-curve" style={{border:"1px solid #0c255b"}}>
-      <div class="col-lg-5 "style={{border:"#fff"}}>
-        <div class="card text-center"style={{border:"#fff"}}>
-           <div class="card-body justify-content-center"style={{border:"#fff", alignItems:"center"}}>
-           <img src={profile} class="card-img-top"  style={{width:"200px", height:"200px", alignItems:"center"}} alt="Card 1 Image"/>
+    <div className="container justify-content-center"  style={{border:"#fff"}}>
+    <div className="row border-curve" style={{border:"1px solid #0c255b"}}>
+      <div className="col-lg-5 "style={{border:"#fff"}}>
+        <div className="card text-center"style={{border:"#fff"}}>
+           <div className="card-body justify-content-center"style={{border:"#fff", alignItems:"center"}}>
+           <img src={profile} className="card-img-top"  style={{width:"200px", height:"200px", alignItems:"center"}} alt="Card 1 Image"/>
            </div>
           </div>
         </div>
-        <div class="col-lg-6 left-aligned"style={{border:"#fff"}}>
-        <div class="card "style={{border:"#fff"}}>
-           <div class="card-body ">
-            <div class="table-responsive">
-      <table class="table table-borderless align-middle">
+        <div className="col-lg-6 left-aligned"style={{border:"#fff"}}>
+        <div className="card "style={{border:"#fff"}}>
+           <div className="card-body ">
+            <div className="table-responsive">
+      <table className="table table-borderless align-middle">
      
         <tbody>
           <tr>

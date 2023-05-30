@@ -48,7 +48,7 @@ export const Help = () => {
                     <div className="mb-3">
                         <div className="form-floating">
                             <textarea name="help" className="form-control " placeholder="Hey! we're here to help!" id="floatingTextarea2" style={{ height: "200px", borderRadius: "10px", boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.2)" }}></textarea>
-                            <label for="floatingTextarea2">Hey! we're here to help!</label>
+                            <label htmlFor="floatingTextarea2">Hey! we're here to help!</label>
                         </div>
                     </div>
 
