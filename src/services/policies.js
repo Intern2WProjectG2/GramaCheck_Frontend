@@ -80,7 +80,9 @@ export async function checkPolicies(data, token, setOpen, setIsLoading, setAlert
                 const result = await updateApp(appId, {
                     "status": status,
                 }, token);
-                const smsResult = await sendSMS(token, userId, status)
+                const authState = JSON.parse(localStorage.getItem('authState'));
+                const phone_number = authState.decodedIDTokenPayload.phone_number;
+                const smsResult = await sendSMS(token, phone_number, status)
             } catch (e) {
                 console.log(e);
             }

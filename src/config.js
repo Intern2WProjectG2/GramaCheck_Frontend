@@ -4,7 +4,7 @@ const authConfig = {
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
     baseUrl: process.env.ASGARDEO_BASE_URL,
-    scope: ['openid', 'profile', 'email'],
+    scope: ['openid', 'profile', 'email', 'phone'],
 };
 
 export default authConfig;
