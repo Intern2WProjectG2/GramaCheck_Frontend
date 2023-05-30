@@ -23,7 +23,7 @@ export const CheckStatus = () => {
     };
 
     const renderIdentityCheck = () => {
-        if (status === "iF" || status ==="p") {
+        if (status === "iF" || status === "p") {
             return renderIcon(false);
         } else {
             return renderIcon(true);
@@ -31,7 +31,7 @@ export const CheckStatus = () => {
     };
 
     const renderAddressCheck = () => {
-        if (status === "iF" || status === "aF" || status ==="p") {
+        if (status === "iF" || status === "aF" || status === "p") {
             return renderIcon(false);
         } else {
             return renderIcon(true);
@@ -39,7 +39,7 @@ export const CheckStatus = () => {
     };
 
     const renderPoliceCheck = () => {
-        if (status === "iF" || status === "aF" || status === "pF" || status ==="p") {
+        if (status === "iF" || status === "aF" || status === "pF" || status === "p") {
             return renderIcon(false);
         } else {
             return renderIcon(true);
@@ -51,35 +51,35 @@ export const CheckStatus = () => {
             <Profile inputNIC={inputNIC} inputAddress={inputAddress} />
             <br />
             <br />
-            <div className="table-responsive-sm">
+            <div className="table-responsive-sm" style={{ flexGrow: 1 }}>
                 <table className="table">
                     <thead className="table-dark">
-                    <tr>
-                        <th style={{ textAlign: "left", paddingLeft: "160px" }}>
-                            Check
-                        </th>
-                        <th>Status</th>
-                    </tr>
+                        <tr>
+                            <th style={{ textAlign: "left", paddingLeft: "160px" }}>
+                                Check
+                            </th>
+                            <th>Status</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td style={{ textAlign: "left", paddingLeft: "130px" }}>
-                            Identity Check
-                        </td>
-                        <td>{renderIdentityCheck()}</td>
-                    </tr>
-                    <tr>
-                        <td style={{ textAlign: "left", paddingLeft: "130px" }}>
-                            Address Check
-                        </td>
-                        <td>{renderAddressCheck()}</td>
-                    </tr>
-                    <tr>
-                        <td style={{ textAlign: "left", paddingLeft: "130px" }}>
-                            Police Check
-                        </td>
-                        <td>{renderPoliceCheck()}</td>
-                    </tr>
+                        <tr>
+                            <td style={{ textAlign: "left", paddingLeft: "130px" }}>
+                                Identity Check
+                            </td>
+                            <td>{renderIdentityCheck()}</td>
+                        </tr>
+                        <tr>
+                            <td style={{ textAlign: "left", paddingLeft: "130px" }}>
+                                Address Check
+                            </td>
+                            <td>{renderAddressCheck()}</td>
+                        </tr>
+                        <tr>
+                            <td style={{ textAlign: "left", paddingLeft: "130px" }}>
+                                Police Check
+                            </td>
+                            <td>{renderPoliceCheck()}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
