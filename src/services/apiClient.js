@@ -80,7 +80,7 @@ export const getUserApps = (data, token) => {
 }
 
 export const getLastUserApp = (data, token) => {
-    return axios.get(`${process.env.API_BASE_URL}/userApps/${data}`, {
+    return axios.get(`${process.env.API_BASE_URL}/LatestApp/${data}`, {
         'headers': {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + token

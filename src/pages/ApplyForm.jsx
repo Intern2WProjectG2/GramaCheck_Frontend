@@ -19,6 +19,8 @@ export const ApplyForm = () => {
   const history = useHistory();
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [alert, setAlert] = useState('');
+  const [route, setRoute] = useState('/');
 
   const [nic, setNic] = useState({ value: '', error: '' });
   const [number, setNumber] = useState({ value: '', error: '' });
@@ -32,15 +34,6 @@ export const ApplyForm = () => {
     state,
     getAccessToken
   } = useAuthContext();
-
-  const getLastApp = async () => {
-    try {
-      const userApp = await getLastUserApp(state.sub, await getAccessToken());
-      console.log(userApp.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
 
   const registerHandler = async (e) => {
     e.preventDefault();
@@ -77,7 +70,7 @@ export const ApplyForm = () => {
           province: province.value,
           postalcode: postalcode.value,
           gramasewaDiv: gramasewaDiv.value
-        }, await getAccessToken(), setOpen, setIsLoading
+        }, await getAccessToken(), setOpen, setIsLoading, setAlert
       );
       console.log(`The policy output is: ${policyOutput}`);
     } catch (e) {
@@ -85,14 +78,21 @@ export const ApplyForm = () => {
     }
   }
 
-  useEffect(() => {
-    getLastApp();
-  }, []);
+  const getLastApp = async () => {
+    try {
+      const userApp = await getLastUserApp(state.sub, await getAccessToken());
+      if(userApp.data.length > 0){
+        userApp.data[0].status === "a" &&
+        getMonthDifference(userApp.data[0].issueDate);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
-  const getMonthDifference = () => {
+  const getMonthDifference = (lastAppDate) => {
     const currentDate = new Date();
-    const dateString = '2022-01-28';
-    const [targetYear, targetMonth] = dateString.split('-').map(Number);
+    const [targetYear, targetMonth] = lastAppDate.split('-').map(Number);
 
     const currentYear = currentDate.getFullYear();
     const currentMonth = currentDate.getMonth() + 1;
@@ -102,11 +102,12 @@ export const ApplyForm = () => {
     if (monthDifference < 6) {
       setOpen(true);
       setAlert("You already have an approved application within the last 6 months. Press continue to check status.");
+      setRoute('/status-list');
     }
   }
 
   useEffect(() => {
-    getMonthDifference();
+    getLastApp();
   }, []);
 
   return (
@@ -212,8 +213,8 @@ export const ApplyForm = () => {
 
       {open && <DialogBox
         setOpen={setOpen}
-        alert="Your application has been sent."
-        handleContinue={() => history.push('/')}
+        alert={alert}
+        handleContinue={() => history.push(route)}
       />}
 
       {isLoading && <Loading
