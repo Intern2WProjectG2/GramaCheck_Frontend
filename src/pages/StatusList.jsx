@@ -8,35 +8,43 @@ import { DefaultLayout } from "../layouts/Default.jsx";
 
 export const StatusList = () => {
     const history = useHistory();
-    const [apps, setApps] = useState([]);
-
-    const {
-        state,
-        getAccessToken
-    } = useAuthContext();
-
-    const userApps = [
-        { date: "2023 May 04", nic: "923467889v", address: "No 123, Galle Road, Colombo 03" },
-        { date: "2023 April 09", nic: "923467889v", address: "No 145, Galle Road, Colombo 03" },
-        { date: "2023 January 01", nic: "923467889v", address: "No 13, Galle Road, Colombo 03" },
+    // const [apps, setApps] = useState([]);
+    //
+    // const {
+    //     state,
+    //     getAccessToken
+    // } = useAuthContext();
+    //
+    // const userApps = [
+    //     { date: "2023 May 04", nic: "923467889v", address: "No 123, Galle Road, Colombo 03" , status:"iF"},
+    //     { date: "2023 April 09", nic: "923467889v", address: "No 145, Galle Road, Colombo 03",status:"aF" },
+    //     { date: "2023 January 01", nic: "923467889v", address: "No 13, Galle Road, Colombo 03",status:"pF" },
+    // ];
+    //
+    // const getApps = async () => {
+    //     try {
+    //         const userApps = await getUserApps(state.sub, await getAccessToken());
+    //         setApps(userApps.data);
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // }
+    const apps = [
+        { date: "2023 May 04", nic: "923467889v", address: "No 123, Galle Road, Colombo 03",status:"p" },
+        { date: "2023 April 09", nic: "923467889v", address: "No 145, Galle Road, Colombo 03",status:"aF" },
+        { date: "2023 January 01", nic: "923467889v" , address: "No 13, Galle Road, Colombo 03",status:"a"},
     ];
-
-    const getApps = async () => {
-        try {
-            const userApps = await getUserApps(state.sub, await getAccessToken());
-            setApps(userApps.data);
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
     const handleCheckStatus = (item) => {
-        history.push(`/check-status?date=${encodeURIComponent(item.issueDate)}&nic=${encodeURIComponent(item.inputNIC)}&address=${encodeURIComponent(item.inputAddress)}`);
+        history.push(`/check-status?date=${encodeURIComponent(item.date)}&nic=${encodeURIComponent(item.nic)}&address=${encodeURIComponent(item.address)}&status=${encodeURIComponent(item.status)}`);
     };
 
-    useEffect(() => {
-        getApps();
-    }, []);
+    // const handleCheckStatus = (item) => {
+    //     history.push(`/check-status?date=${encodeURIComponent(item.date)}&nic=${encodeURIComponent(item.nic)}&address=${encodeURIComponent(item.address)}&status=${encodeURIComponent(item.status)}`);
+    // };
+
+    // useEffect(() => {
+    //     getApps();
+    // }, []);
 
     return (
         <DefaultLayout>
@@ -45,7 +53,7 @@ export const StatusList = () => {
                 <ul className="list-group">
                     {apps.map((item, index) => (
                         <li href="#" key={index} className="list-group-item d-flex justify-content-between align-items-center">
-                            {item.issueDate}
+                            {item.date}
                             <button
                                 type="button"
                                 className="btn btn-primary btn-sm"
