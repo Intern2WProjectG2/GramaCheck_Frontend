@@ -81,9 +81,9 @@ export const ApplyForm = () => {
   const getLastApp = async () => {
     try {
       const userApp = await getLastUserApp(state.sub, await getAccessToken());
-      if(userApp.data.length > 0){
+      if (userApp.data.length > 0) {
         userApp.data[0].status === "a" &&
-        getMonthDifference(userApp.data[0].issueDate);
+          getMonthDifference(userApp.data[0].issueDate);
       }
     } catch (error) {
       console.log(error);

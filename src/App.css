@@ -328,7 +328,8 @@ code {
     background-color: #F0F8FF;
     padding: 15px 0;
     width: 100%;
-}
+    bottom: 0;
+  }
 
 .border-curve {
     border-radius: 20px;

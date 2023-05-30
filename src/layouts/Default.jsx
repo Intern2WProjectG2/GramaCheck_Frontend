@@ -13,7 +13,7 @@ export const DefaultLayout = (props) => {
     } = props;
 
     return (
-        <div style={{display:"flex", flexDirection:"column", minHeight:"100vh"}}>
+        <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
             <Header
                 setHasLogoutFailureError={setHasLogoutFailureError}
                 hasLogoutFailureError={hasLogoutFailureError} />

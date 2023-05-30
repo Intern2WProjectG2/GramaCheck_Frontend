@@ -8,7 +8,7 @@ export const HomePage = () => {
 
   return (
     <>
-      <div style={{ marginTop: "50px", justifySelf: "center" }}>
+      <div style={{ marginTop: "50px", justifySelf: "center", flexGrow: 1 }}>
         <CardPage />
       </div>
       <div style={{ marginTop: "50px" }}>
