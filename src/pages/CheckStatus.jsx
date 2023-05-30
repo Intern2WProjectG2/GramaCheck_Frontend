@@ -51,9 +51,9 @@ export const CheckStatus = () => {
             <Profile inputNIC={inputNIC} inputAddress={inputAddress} />
             <br />
             <br />
-            <div class="table-responsive-sm">
-                <table class="table">
-                    <thead class="table-dark">
+            <div className="table-responsive-sm">
+                <table className="table">
+                    <thead className="table-dark">
                     <tr>
                         <th style={{ textAlign: "left", paddingLeft: "160px" }}>
                             Check
