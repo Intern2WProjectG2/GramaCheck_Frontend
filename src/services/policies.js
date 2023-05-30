@@ -1,7 +1,7 @@
 import { identitycheck, validateAddress, policecheck, addApp, updateApp, sendSMS } from './apiClient';
 import { v4 as uuidv4 } from 'uuid';
 
-export async function checkPolicies(data, token, setOpen, setIsLoading) {
+export async function checkPolicies(data, token, setOpen, setIsLoading, setAlert) {
     const userId = JSON.parse(localStorage.getItem('authState')).decodedIDTokenPayload.sub;
     const address = {
         "addNum": data.number,
@@ -40,6 +40,7 @@ export async function checkPolicies(data, token, setOpen, setIsLoading) {
         if ((await addApp(app, token)).status === 201) {
             setIsLoading(false);
             setOpen(true);
+            setAlert("Your application has been sent.");
             // Check identity
             try {
                 if ((await identitycheck(data.nic, token)).data === true) {
@@ -79,8 +80,6 @@ export async function checkPolicies(data, token, setOpen, setIsLoading) {
                 const result = await updateApp(appId, {
                     "status": status,
                 }, token);
-                console.log(result);
-                console.log(token);
                 const smsResult = await sendSMS(token, userId, status)
             } catch (e) {
                 console.log(e);
