@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { LogoutRequestDenied } from "./LogoutRequestDenied.jsx";
 import { useAuthContext } from "@asgardeo/auth-react";
 import LOGO from '../images/logo.png';
 
 export const Header = ({ setHasLogoutFailureError, hasLogoutFailureError }) => {
+    const [dropDown, setDropDown] = useState(false);
 
     const {
         state,
@@ -16,6 +17,7 @@ export const Header = ({ setHasLogoutFailureError, hasLogoutFailureError }) => {
     const errorDescParam = new URLSearchParams(search).get('error_description');
 
     const handleLogout = () => {
+        setDropDown(false);
         signOut();
     };
 
@@ -50,15 +52,18 @@ export const Header = ({ setHasLogoutFailureError, hasLogoutFailureError }) => {
                 </h1>
 
                 <div>
-                    <div>{state.email}</div>
-                    <button
+                    <span onClick={() => setDropDown(!dropDown)} style={{cursor:"pointer"}}>
+                        {state.email} &#9662;
+                    </span>
+                    {dropDown && <button
                         className="btn btn-outline-dark"
                         onClick={() => {
                             handleLogout();
                         }}
+                        style={{position:"absolute", display:"block", right:"10px", marginTop:"10px"}}
                     >
                         Logout
-                    </button>
+                    </button>}
                 </div>
 
             </div>
