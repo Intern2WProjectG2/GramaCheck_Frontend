@@ -33,8 +33,8 @@ export const identitycheck = (data, token) => {
     });
 }
 
-export const validateAddress = (data, token) => {
-    return axios.post(`${process.env.API_BASE_URL}/validateAddress`, data, {
+export const validateAddress = (data, token,nic) => {
+    return axios.post(`${process.env.API_BASE_URL}/validateUserAddress/${nic}`, data, {
         'headers': {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + token

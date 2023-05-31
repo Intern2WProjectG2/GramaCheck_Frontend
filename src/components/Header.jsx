@@ -37,24 +37,30 @@ export const Header = ({ setHasLogoutFailureError, hasLogoutFailureError }) => {
         );
     }
 
-    
+
     return (
 
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
+
                 <h1 className="navbar-brand" href="#">
                     <Link to="/">
                         <img src={LOGO} alt="" width="200" height="35" className="d-inline-block align-text-top" />
                     </Link>
                 </h1>
-                <button
-                    className="btn btn-outline-dark"
-                    onClick={() => {
-                        handleLogout();
-                    }}
-                >
-                    Logout
-                </button>
+
+                <div>
+                    <div>{state.email}</div>
+                    <button
+                        className="btn btn-outline-dark"
+                        onClick={() => {
+                            handleLogout();
+                        }}
+                    >
+                        Logout
+                    </button>
+                </div>
+
             </div>
         </nav>
 

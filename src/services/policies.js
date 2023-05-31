@@ -53,7 +53,7 @@ export async function checkPolicies(data, token, setOpen, setIsLoading, setAlert
 
             // Check address
             try {
-                if ((await validateAddress(address, token)).data === true) {
+                if ((await validateAddress(address, token, data.nic)).data === true) {
                     policyResults['address'] = true;
                 }
             } catch (e) {
